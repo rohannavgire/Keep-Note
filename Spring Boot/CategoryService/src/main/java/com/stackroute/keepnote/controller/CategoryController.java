@@ -1,5 +1,6 @@
 package com.stackroute.keepnote.controller;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -150,21 +151,19 @@ public class CategoryController {
 	 * 
 	 * This handler method should map to the URL "/api/v1/category" using HTTP GET method
 	 */
-	/*@ApiOperation(value = "Finds all Categories for a User ID.")
-	@GetMapping(value = "/api/v1/category", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Category>> getCategoryByUserId(@PathVariable("id") String userId) {
+	@ApiOperation(value = "Finds all Categories for a User ID.")
+	@GetMapping(value = "/api/v1/category/all/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Category>> getCategoryByUserId(@PathVariable("userId") String userId) {
 
 		List<Category> category = null;
 
-
-				category = categoryService.getAllCategoryByUserId(userId);
-			
+				category = categoryService.getAllCategoryByUserId(userId);			
 			
 			if(category.isEmpty())
-				return new ResponseEntity<List<Category>>(HttpStatus.NOT_FOUND);
+				return new ResponseEntity<List<Category>>(category, HttpStatus.NOT_FOUND);
 			
 		return new ResponseEntity<List<Category>>(category, HttpStatus.OK);
-	}*/
+	}
 
 	/*
 	 * Define a handler method which will get us the category by a categoryId.

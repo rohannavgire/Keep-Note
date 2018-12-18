@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Note } from '../note';
 import { NotesService } from '../services/notes.service';
+import { Category } from '../category';
+import { CategoryService } from '../services/category.service';
 
 @Component({
   selector: 'app-note-taker',
@@ -11,18 +13,26 @@ export class NoteTakerComponent implements OnInit {
 
   notes : Note[];
   note : Note;
+  categories : Array<Category>;
 
   errorMessage : string;
 
-  constructor(private noteService:NotesService){
+  constructor(private noteService:NotesService, private categoryService:CategoryService){
 
     this.notes = [];
     
     this.note = new Note();
 
+    this.categories = [];
+
   }
 
   ngOnInit() {
+    this.categoryService.getCategories().subscribe(data =>{
+      this.categories = data;       
+    },error =>{
+      
+    });
   }
 
   addNote(){

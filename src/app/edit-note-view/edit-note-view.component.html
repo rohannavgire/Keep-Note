@@ -5,15 +5,22 @@
 <label class="error-message">{{ errMessage }}</label>
 
 <mat-form-field> 
-  <input [(ngModel)]="note.title" name="editTitle" matInput placeholder="Title" type="text">
+  <input [(ngModel)]="note.noteTitle" name="editTitle" matInput placeholder="Title" type="text">
 </mat-form-field>
 <mat-form-field>
-  <textarea [(ngModel)]="note.text" name="editText" matInput placeholder="Text"></textarea>
+  <textarea [(ngModel)]="note.noteContent" name="editText" matInput placeholder="Content"></textarea>
 </mat-form-field>
 <mat-form-field>
-<mat-select name="editStatus" placeholder="Select state" [(ngModel)]="note.state">
+<mat-select name="editStatus" placeholder="Select Status" [(ngModel)]="note.noteStatus">
   <mat-option *ngFor="let state of states" [value]="state">
     {{ state }}
+  </mat-option>
+</mat-select>
+</mat-form-field>
+<mat-form-field>
+<mat-select name="editCategory" placeholder="Select Category" [(ngModel)]="note.category">
+  <mat-option *ngFor="let category of categories" [value]="category.categoryName">
+    {{ category }}
   </mat-option>
 </mat-select>
 </mat-form-field>

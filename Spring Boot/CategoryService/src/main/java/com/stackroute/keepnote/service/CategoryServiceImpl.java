@@ -1,5 +1,6 @@
 package com.stackroute.keepnote.service;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -112,7 +113,12 @@ public class CategoryServiceImpl implements CategoryService {
 	 * method of Respository interface.
 	 */
 	public List<Category> getAllCategoryByUserId(String userId) {
-		return categoryRepository.findAllCategoryByCategoryCreatedBy(userId);
+		List<Category> categories = Collections.<Category>emptyList();
+		categories = categoryRepository.findAllCategoryByCategoryCreatedBy(userId);
+		if(categories.isEmpty() || categories.size() == 0)
+			return Collections.<Category>emptyList();
+		else
+			return categories;
 	}
 
 }

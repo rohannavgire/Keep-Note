@@ -12,6 +12,14 @@
           <mat-form-field>
             <textarea matInput name="text" placeholder="text" [(ngModel)]='note.noteContent'></textarea>
           </mat-form-field>
+          <mat-form-field>
+            <mat-select name="category" placeholder="Select Category" [(ngModel)]="note.category">
+              <mat-option *ngFor="let category of categories" [value]="category">
+                {{ category.categoryName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <!-- <app-note [note]="note" *ngFor="let note of notes" class="note-card"></app-note> -->
           <label class="error-message">{{ errorMessage }}</label>
           <button mat-button (click)="addNote()">Done</button>
         </div>    

@@ -18,6 +18,7 @@ import { CanActivateRouteGuard } from './can-activate-route.guard';
 import { NotesService } from './services/notes.service';
 import { RouterService } from './services/router.service';
 import { AuthenticationService } from './services/authentication.service';
+import { CategoryService } from './services/category.service';
 import { NoteTakerComponent } from './note-taker/note-taker.component';
 import { NoteViewComponent } from './note-view/note-view.component';
 import { ListViewComponent } from './list-view/list-view.component';
@@ -90,7 +91,7 @@ const appRoutes : Routes = [
     MatDialogModule,
     MatSelectModule
   ],
-  providers: [NotesService,CanActivateRouteGuard,RouterService,AuthenticationService],
+  providers: [NotesService,CanActivateRouteGuard,RouterService,AuthenticationService,CategoryService],
   bootstrap: [AppComponent],
   entryComponents: [EditNoteViewComponent]
 })
