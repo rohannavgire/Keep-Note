@@ -6,6 +6,8 @@ import { map } from 'rxjs/operators';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { RouterService } from '../services/router.service';
+import { CategoryService } from '../services/category.service';
+import { Category } from '../category';
 
 @Component({
   selector: 'app-header',
@@ -18,12 +20,18 @@ export class HeaderComponent implements OnInit{
     .pipe(
       map(result => result.matches)
     );
+  categories : Category[];
     
-  constructor(private breakpointObserver: BreakpointObserver, private router: RouterService) {}
+  constructor(private breakpointObserver: BreakpointObserver, private router: RouterService, private catService: CategoryService) {}
 
   ngOnInit() {
-
-    
+    this.catService.getCategories().subscribe(data =>{
+      console.log("YAY data: ",data);
+      
+      this.categories = data;   
+    },error =>{
+      
+    });
   }
 
   toggleView() {
