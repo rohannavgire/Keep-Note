@@ -8,6 +8,7 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { RouterService } from '../services/router.service';
 import { CategoryService } from '../services/category.service';
 import { Category } from '../category';
+import { MatListModule } from '@angular/material/list';
 
 @Component({
   selector: 'app-header',
@@ -44,6 +45,10 @@ export class HeaderComponent implements OnInit{
     else if (!this.isNoteView) {
       this.router.routeToListView();
     }
+  }
+
+  openCreateCategoryView() {    
+    this.router.routeToCreateCategoryView(localStorage.getItem('userId'));
   }
   
   }

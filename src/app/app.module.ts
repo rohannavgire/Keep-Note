@@ -27,6 +27,8 @@ import { EditNoteOpenerComponent } from './edit-note-opener/edit-note-opener.com
 import { EditNoteViewComponent } from './edit-note-view/edit-note-view.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSelectModule} from '@angular/material/select';
+import { CreateCategoryOpenerComponent } from './create-category-opener/create-category-opener.component';
+import { CreateCategoryViewComponent } from './create-category-view/create-category-view.component';
 
 const appRoutes : Routes = [
   {
@@ -49,6 +51,10 @@ const appRoutes : Routes = [
       {
         path: 'note/:noteId/edit', component: EditNoteOpenerComponent,
         outlet: 'noteEditOutlet'
+      },
+      {
+        path: ':userId', component: CreateCategoryOpenerComponent,
+        outlet: 'createCategoryOutlet'
       }
     ]
   },
@@ -69,7 +75,9 @@ const appRoutes : Routes = [
     ListViewComponent,
     NoteComponent,
     EditNoteOpenerComponent,
-    EditNoteViewComponent
+    EditNoteViewComponent,
+    CreateCategoryOpenerComponent,
+    CreateCategoryViewComponent
   ],
   imports: [
     BrowserModule,
@@ -93,6 +101,6 @@ const appRoutes : Routes = [
   ],
   providers: [NotesService,CanActivateRouteGuard,RouterService,AuthenticationService,CategoryService],
   bootstrap: [AppComponent],
-  entryComponents: [EditNoteViewComponent]
+  entryComponents: [EditNoteViewComponent, CreateCategoryViewComponent]
 })
 export class AppModule { }
