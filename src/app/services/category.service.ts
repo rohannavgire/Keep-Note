@@ -34,6 +34,7 @@ export class CategoryService {
   }
 
   getCategories():BehaviorSubject<Array<Category>>{
+    this.fetchCategoriesFromServer();
     return this.catSubject;
 }
 
