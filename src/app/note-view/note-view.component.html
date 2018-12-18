@@ -1,5 +1,10 @@
+<div class="notes-container">
 <div class="keep-c-note-container">
-  
-	<!-- Include the notes collection with each note rendered as a separate NoteComponent -->
-
+  <!-- notes as card -->
+  <!-- <mat-card *ngFor="let note of notesList" class="note-card">
+    <mat-card-title>{{note.title}}</mat-card-title>
+    <mat-card-content>{{note.text}}</mat-card-content>
+  </mat-card>  -->
+  <app-note [note]="note" *ngFor="let note of notes" class="note-card"></app-note>
+</div>
 </div>

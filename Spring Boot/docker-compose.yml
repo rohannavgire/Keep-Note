@@ -1,0 +1,86 @@
+# Dockerfile has been added in all micro-services, you need to dockerize all micro-services and add docker-compose.yml file
+version: "3"
+services:
+#Configs for MySQL
+  user-mysql:
+    image: mysql:5.6
+    restart: always
+    network_mode: host
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: userDb
+
+#Configs for MongoDB
+  mongo-service:
+    image: mongo:latest
+    command: mongod --port 27018
+    network_mode: host
+    restart: always
+    volumes:
+      - /home/ubuntu/Documents/data:/data/db
+    ports:
+      - 27017:27018
+      
+#Configs for User Service
+  user-service:
+    image: user-service
+    build:
+      context: UserService/
+    restart: always
+    network_mode: host
+    ports:
+      - 8080:8080
+    depends_on:
+      - mongo-service
+
+#Configs for UserAuth Service
+  userauth-service:
+    image: userauth-service
+    build:
+      context: UserAuthentication-Service/
+    restart: always
+    network_mode: host
+    ports:
+      - 8089:8089
+    depends_on:
+      - mongo-service
+
+#Configs for Reminder Service
+  reminder-service:
+    image: reminder-service
+    build:
+      context: ReminderService/
+    restart: always
+    network_mode: host
+    ports:
+      - 8081:8081
+    depends_on:
+      - mongo-service
+      
+#Configs for Category Service
+  category-service:
+    image: category-service
+    build:
+      context: CategoryService/
+    restart: always
+    network_mode: host
+    ports:
+      - 8083:8083
+    depends_on:
+      - mongo-service
+
+#Configs for Note Service
+  note-service:
+    image: note-service
+    build:
+      context: NoteService/
+    restart: always
+    network_mode: host
+    ports:
+      - 8082:8082
+    depends_on:
+      - mongo-service

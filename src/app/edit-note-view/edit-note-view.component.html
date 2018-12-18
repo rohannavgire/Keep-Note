@@ -1,6 +1,8 @@
-<!-- Label to display any error messages -->
-<label class="error-message">{{ errMessage }}</label>
+<div class="note-taker-form">
 
+<!-- Label to display any error messages -->
+
+<label class="error-message">{{ errMessage }}</label>
 
 <mat-form-field> 
   <input [(ngModel)]="note.title" name="editTitle" matInput placeholder="Title" type="text">
@@ -17,4 +19,5 @@
 </mat-form-field>
 <div class="keep-c-done-wrapper">
   <button mat-button (click)="onSave()">Save</button>
+</div>
 </div>

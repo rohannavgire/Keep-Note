@@ -1,0 +1,8 @@
+.keep-note-expansion-panel{
+    width: 60vw;
+    margin:2vw 20vw;
+}
+.note-taker-form{
+    display: flex;
+    flex-direction: column;
+}

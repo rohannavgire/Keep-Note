@@ -1,8 +1,14 @@
-<!-- NoteTakerComponent to be displayed as part of DashboardComponent -->
-<app-note-taker></app-note-taker>
+<div class="container">
+    
 
-<!-- Following router outlet displays the NoteViewComponent or ListViewComponent based on primary route -->
-<router-outlet></router-outlet>
+    <app-note-taker></app-note-taker>
 
-<!-- Following named router outlet displays the EditViewComponent based on the secondary route -->
-<router-outlet name="noteEditOutlet"></router-outlet>
+    <!-- <app-notes-view></app-notes-view>
+
+    <app-list-view></app-list-view> -->
+
+    <router-outlet></router-outlet>
+    <router-outlet name="noteEditOutlet"></router-outlet>
+    
+    </div>
+    

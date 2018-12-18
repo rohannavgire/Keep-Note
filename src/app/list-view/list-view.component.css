@@ -1,0 +1,24 @@
+.notes-container{
+    width:80vw;
+    margin:2vw 20vw;
+    display: flex;
+    flex-flow: row wrap;
+    flex-direction: column;
+}
+.keep-c-list-container{
+    width:80vw;
+    margin:2vw 20vw;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+.keep-c-note-container {
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+   }
+.note-card{
+    margin:1em;
+    width: 30vw;
+}

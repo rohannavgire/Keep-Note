@@ -1,0 +1,22 @@
+div.container{
+    display : flex;
+    flex-direction: column;
+    
+   }
+   .keep-note-expansion-panel{
+       width: 60vw;
+       margin:10vw 20vw;
+   }
+   .note-taker-form{
+       display: flex;
+       flex-direction: column;       
+   }
+   .notes-container{
+       width:80vw;
+       margin:2vw 20vw;
+       display: flex;
+       flex-flow: row wrap;
+   }
+   .note-card{
+       margin:1em;
+   }

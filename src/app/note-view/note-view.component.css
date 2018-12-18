@@ -1,0 +1,14 @@
+.notes-container{
+    width:80vw;
+    margin:2vw 20vw;
+    display: flex;
+    flex-flow: row wrap;
+}
+.keep-c-note-container {
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+   }
+.note-card{
+    margin:1em;
+}
