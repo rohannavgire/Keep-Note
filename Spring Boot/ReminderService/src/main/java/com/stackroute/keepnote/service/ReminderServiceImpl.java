@@ -1,5 +1,6 @@
 package com.stackroute.keepnote.service;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -9,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.stackroute.keepnote.exception.ReminderNotCreatedException;
 import com.stackroute.keepnote.exception.ReminderNotFoundException;
-
 import com.stackroute.keepnote.model.Reminder;
 
 import com.stackroute.keepnote.repository.ReminderRepository;
@@ -105,6 +105,15 @@ public class ReminderServiceImpl implements ReminderService {
 			throw (new ReminderNotFoundException("Reminder not found."));
 		return reminder;
 	}
+	
+	public List<Reminder> getAllRemindersByUserId(String userId) {
+		List<Reminder> reminders = Collections.<Reminder>emptyList();
+		reminders = reminderRepository.findAllReminderByReminderCreatedBy(userId);
+		if(reminders.isEmpty() || reminders.size() == 0)
+			return Collections.<Reminder>emptyList();
+		else
+			return reminders;
+	}
 
 	/*
 	 * This method should be used to get all reminders. Call the corresponding
@@ -114,5 +123,6 @@ public class ReminderServiceImpl implements ReminderService {
 	public List<Reminder> getAllReminders() {
 		return reminderRepository.findAll();
 	}
+		
 
 }

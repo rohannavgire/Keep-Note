@@ -11,6 +11,7 @@ export class CategoryService {
   category: Category;
   categories: Array<Category>;
   catSubject = new BehaviorSubject([]);
+  catId : string;
 
   constructor(private http:HttpClient,private authService : AuthenticationService) {
     this.category = new Category();
@@ -51,18 +52,34 @@ addCategory(category:Category):Observable<Category>{
 }
 
 getCategoryById(catId): Category {
-  let foundCategory =  this.categories.find(category => category.categoryId == catId);
+  let foundCategory =  this.categories.find(category => category.id == catId);
   
   return Object.assign({},foundCategory);
 }
 
-editNote(category: Category): Observable<Category> {
-  return this.http.put<Category>(`http://localhost:8083/api/v1/category/${category.categoryId}`,category,{
+editCategory(category: Category): Observable<Category> {
+  return this.http.put<Category>(`http://localhost:8083/api/v1/category/${category.id}`,category,{
     headers : new HttpHeaders().set('authorization',`Bearer ${this.authService.getBearerToken()}`)
   }).do(editedCategory => {
-    let foundCategory = this.categories.find(category => category.categoryId == editedCategory.categoryId);
+    let foundCategory = this.categories.find(category => category.id == editedCategory.id);
     Object.assign(foundCategory,editedCategory);
     this.catSubject.next(this.categories);
+  })
+}
+
+// deleteCategory(category: Category): Observable<Category> {
+//   this.catId = category.categoryId;
+//   console.log("CAT TBDS: ", this.catId);
+//   return this.http.delete<Category>(`http://localhost:8083//api/v1/category/${category.categoryId}`,{
+//     headers : new HttpHeaders().set('authorization',`Bearer ${this.authService.getBearerToken()}`)
+//   })
+// }
+
+deleteCategory(category: Category) {
+  console.log("in cat service delete: ",category.id);
+  
+  this.http.delete<Category>(`http://localhost:8083/api/v1/category/${category.id}`,{
+    headers : new HttpHeaders().set('authorization',`Bearer ${this.authService.getBearerToken()}`)
   })
 }
 

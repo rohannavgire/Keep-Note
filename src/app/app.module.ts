@@ -29,6 +29,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatSelectModule} from '@angular/material/select';
 import { CreateCategoryOpenerComponent } from './create-category-opener/create-category-opener.component';
 import { CreateCategoryViewComponent } from './create-category-view/create-category-view.component';
+import {MatChipsModule} from '@angular/material/chips';
+import { ReminderService } from './services/reminder.service';
 
 const appRoutes : Routes = [
   {
@@ -97,9 +99,10 @@ const appRoutes : Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
+    MatChipsModule
   ],
-  providers: [NotesService,CanActivateRouteGuard,RouterService,AuthenticationService,CategoryService],
+  providers: [NotesService,CanActivateRouteGuard,RouterService,AuthenticationService,CategoryService,ReminderService],
   bootstrap: [AppComponent],
   entryComponents: [EditNoteViewComponent, CreateCategoryViewComponent]
 })

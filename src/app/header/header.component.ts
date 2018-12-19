@@ -58,4 +58,8 @@ export class HeaderComponent implements OnInit{
     this.router.routeToLogin();
   }
 
+  deleteCategory(category : Category) {      
+    this.catService.deleteCategory(category);
+  }
+
   }

@@ -24,6 +24,13 @@
 	cursor: pointer;
 }
 
+.keep-c-delete-category {
+	margin-right: 0%;
+	margin-left: 0%;
+	padding-right: 0%;
+	cursor: pointer;
+}
+
 .mat-raised-button {
 	margin : 2%;
 }

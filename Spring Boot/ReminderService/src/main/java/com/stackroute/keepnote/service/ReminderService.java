@@ -20,6 +20,8 @@ public interface ReminderService {
     Reminder updateReminder(Reminder reminder, String reminderId) throws ReminderNotFoundException;
 
     Reminder getReminderById(String reminderId) throws ReminderNotFoundException;
+    
+    List<Reminder> getAllRemindersByUserId(String userId);
 
     List<Reminder> getAllReminders();
 }

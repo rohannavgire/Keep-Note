@@ -1,5 +1,5 @@
 export class Reminder {
-    reminderId: string;
+    id: string;
     reminderName: string;
     reminderDescription: string;
     reminderType: string;
@@ -7,7 +7,7 @@ export class Reminder {
     reminderCreationDate: Date;
   
     constructor() {
-      this.reminderId = '';
+      this.id = '';
       this.reminderName = '';
       this.reminderDescription = '';
       this.reminderType = '';

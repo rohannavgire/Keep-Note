@@ -205,6 +205,20 @@ public class ReminderController {
 			
 		return new ResponseEntity<Reminder>(reminder, HttpStatus.OK);
 	}
+	
+	@ApiOperation(value = "Finds all Reminders for a User ID.")
+	@GetMapping(value = "/api/v1/reminder/all/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Reminder>> getRemindersByUserId(@PathVariable("userId") String userId) {
+
+		List<Reminder> reminders = null;
+
+		reminders = reminderService.getAllRemindersByUserId(userId);		
+			
+			if(reminders.isEmpty())
+				return new ResponseEntity<List<Reminder>>(reminders, HttpStatus.NOT_FOUND);
+			
+		return new ResponseEntity<List<Reminder>>(reminders, HttpStatus.OK);
+	}
 
 	/*
 	 * Define a handler method which will get us the all reminders.

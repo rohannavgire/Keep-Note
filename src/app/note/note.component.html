@@ -2,7 +2,24 @@
     <mat-card-title name="title">{{note.noteTitle}}</mat-card-title>
     <mat-card-subtitle name="category">Category: {{category}}</mat-card-subtitle>
     <mat-card-content>{{note.noteContent}}</mat-card-content>
-
+    <mat-form-field class="example-chip-list">
+      <mat-chip-list #chipList>
+        <mat-chip *ngFor="let reminder of reminders" [selectable]="selectable"
+                 [removable]="removable" (removed)="remove(reminder)">
+          {{reminder.reminderName}}
+          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        </mat-chip>
+        <input placeholder="Reminder(s):"
+               [matChipInputFor]="chipList"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+               [matChipInputAddOnBlur]="addOnBlur"
+               (matChipInputTokenEnd)="add($event)">
+      </mat-chip-list>
+    </mat-form-field>
+    <mat-card-actions>
+      <button mat-button>Add Reminder</button>
+      <button mat-button>Delete</button>
+    </mat-card-actions>
     <!-- noteId: Number;
   noteTitle: string;
   noteContent: string;
