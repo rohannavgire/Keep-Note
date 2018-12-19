@@ -24,6 +24,9 @@
 				<i *ngIf="isNoteView" class="material-icons switchToListView">view_list</i>
 				<i *ngIf="!isNoteView" class="material-icons switchToNoteView">view_quilt</i>
 			</div>
+			<div class="keep-c-logout" (click)='logout()'>
+				<mat-icon>exit_to_app</mat-icon>
+			</div>
 	  </mat-toolbar>
 
 	</mat-sidenav-content>

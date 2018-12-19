@@ -15,7 +15,12 @@
 
 .keep-c-toggle-view {
 	width: 100%;
-	margin-left: 93%;
+	margin-left: 90%;
+	margin-right: 5px;
+	cursor: pointer;
+}
+.keep-c-logout {
+	width: 100%;
 	cursor: pointer;
 }
 

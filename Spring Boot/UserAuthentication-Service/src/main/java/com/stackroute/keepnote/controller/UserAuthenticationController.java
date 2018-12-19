@@ -124,7 +124,6 @@ public class UserAuthenticationController {
 				.setExpiration(new Date(System.currentTimeMillis() + EXPIRATIONTIME))
 				.signWith(SignatureAlgorithm.HS256, "secretkey").compact();
 		
-		
 		return jwtToken;
 	}
 

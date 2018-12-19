@@ -10,6 +10,7 @@ import { CategoryService } from '../services/category.service';
 import { Category } from '../category';
 import { MatListModule } from '@angular/material/list';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-header',
@@ -24,7 +25,7 @@ export class HeaderComponent implements OnInit{
     );
   categories : Category[];
     
-  constructor(private breakpointObserver: BreakpointObserver, private router: RouterService, private catService: CategoryService) {}
+  constructor(private breakpointObserver: BreakpointObserver, private router: RouterService, private catService: CategoryService, private authService: AuthenticationService) {}
 
   ngOnInit() {
     this.catService.getCategories().subscribe(data =>{
@@ -51,5 +52,10 @@ export class HeaderComponent implements OnInit{
   openCreateCategoryView() {    
     this.router.routeToCreateCategoryView(localStorage.getItem('userId'));
   }
-  
+
+  logout(){
+    this.authService.logoutUser();
+    this.router.routeToLogin();
+  }
+
   }

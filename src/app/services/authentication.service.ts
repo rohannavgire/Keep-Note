@@ -14,6 +14,11 @@ export class AuthenticationService {
     return this.http.post('http://localhost:8089/api/v1/auth/login',user);
   }
 
+  logoutUser(){
+    localStorage.removeItem('userId');
+    localStorage.removeItem('bearer-token');
+  }
+
   setUserId(userId:string){
     localStorage.setItem('userId',userId);
   }
@@ -26,12 +31,9 @@ export class AuthenticationService {
     return localStorage.getItem('bearer-token');
   } 
 
-  isUserAuthenticated(token): Promise<boolean> {
-    // return this.http.post(`http://localhost:3000/auth/v1/isAuthenticated`, {}, {
-    //    headers: new HttpHeaders().set('authorization', `Bearer ${token}`)
-    //  })
-    //  .map((res) => res['isAuthenticated'])
-    if(token == localStorage.getItem('bearer-token'))
+  isUserAuthenticated(token): Promise<boolean> {        
+    
+    if(token)
       return Promise.resolve(true);
     else
       return Promise.resolve(false);
