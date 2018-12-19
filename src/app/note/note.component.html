@@ -1,4 +1,4 @@
-<mat-card class="note-card" (click)='openEditNoteView()'>
+<mat-card class="note-card">
     <mat-card-title name="title">{{note.noteTitle}}</mat-card-title>
     <mat-card-subtitle name="category">Category: {{category}}</mat-card-subtitle>
     <mat-card-content>{{note.noteContent}}</mat-card-content>
@@ -8,8 +8,8 @@
                  [removable]="removable" (removed)="remove(reminder)">
           {{reminder.reminderName}}
           <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-        </mat-chip>
-        <input placeholder="Reminder(s):"
+        </mat-chip>        
+        <input placeholder="Add a reminder"
                [matChipInputFor]="chipList"
                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                [matChipInputAddOnBlur]="addOnBlur"
@@ -17,16 +17,7 @@
       </mat-chip-list>
     </mat-form-field>
     <mat-card-actions>
-      <button mat-button>Add Reminder</button>
+      <button mat-button (click)='openEditNoteView()'>Edit</button>
       <button mat-button>Delete</button>
     </mat-card-actions>
-    <!-- noteId: Number;
-  noteTitle: string;
-  noteContent: string;
-  noteStatus: string;
-  noteCreationDate: Date;
-  category: Category;
-  reminders: Reminder[];
-  noteCreatedBy: string;
-   -->
   </mat-card>

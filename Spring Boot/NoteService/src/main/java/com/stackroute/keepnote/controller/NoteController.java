@@ -131,18 +131,16 @@ public class NoteController {
 	@ApiOperation(value = "Updates a Note.")
 	@PutMapping(value = "/api/v1/note/{userId}/{id}")
 	public ResponseEntity<Note> updateNote(@PathVariable("userId") String userId, @PathVariable("id") int noteId, @RequestBody Note note) throws Exception {
-		/*String loggedInUserId = (String) session.getAttribute("loggedInUserId");
-	
-		if(loggedInUserId == null) {
-			return new ResponseEntity<Note>(HttpStatus.UNAUTHORIZED);
-		}*/
+		System.out.println("YAY INSIDE NOTEE!!!!!!!!!");
 
 		note.setNoteTitle(note.getNoteTitle());
 		note.setNoteContent(note.getNoteContent());
 		note.setNoteStatus(note.getNoteStatus());
 		note.setNoteCreatedBy(note.getNoteCreatedBy());
 		note.setCategory(note.getCategory());
+		System.out.println("YAY updated note rem1: "+note.getReminders());
 		note.setReminders(note.getReminders());
+		System.out.println("YAY updated note rem2: "+note.getReminders());
 		note.setNoteCreationDate(note.getNoteCreationDate());		
 
 		Note updatedNote = null;

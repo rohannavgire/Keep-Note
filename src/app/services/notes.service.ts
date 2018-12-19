@@ -57,11 +57,13 @@ export class NotesService {
   }
 
   editNote(note: Note): Observable<Note> {
-    return this.http.put<Note>(`http://localhost:8082/api/v1/notes/${note.noteId}`,note,{
+    return this.http.put<Note>(`http://localhost:8082/api/v1/note/${note.noteCreatedBy}/${note.noteId}`,note,{
       headers : new HttpHeaders().set('authorization',`Bearer ${this.authService.getBearerToken()}`)
     }).do(editedNote => {
       let foundNote = this.notes.find(note => note.noteId == editedNote.noteId);
       Object.assign(foundNote,editedNote);
+      console.log("editedNote: ",editedNote);
+      
       this.notesSubject.next(this.notes);
     })
   }

@@ -82,31 +82,15 @@ public class ReminderController {
 	@ApiOperation(value = "Creates a new Reminder.")
 	@PostMapping(value = "/api/v1/reminder")
 	public ResponseEntity<Reminder> createReminder(@RequestBody Reminder reminder) {
+	
+		try {     
+			Reminder reminder1 = reminderService.createReminder(reminder);
+            return new ResponseEntity<Reminder>(reminder1, HttpStatus.CREATED);
 
-				try {
-					if(reminderService.getReminderById(reminder.getReminderId()) == null) {
-						reminder = reminderService.createReminder(reminder);
-						return new ResponseEntity<Reminder>(reminder, HttpStatus.CREATED);
-					}
-					else
-						return new ResponseEntity<Reminder>(HttpStatus.CONFLICT);
-				} catch (ReminderNotFoundException | ReminderNotCreatedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-					if(e instanceof ReminderNotFoundException) {
-						try {
-							reminder = reminderService.createReminder(reminder);
-						} catch (ReminderNotCreatedException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-							return new ResponseEntity<Reminder>(HttpStatus.CONFLICT);
-						}
-						return new ResponseEntity<Reminder>(reminder, HttpStatus.CREATED);
-					}
-					e.printStackTrace();									
-					return new ResponseEntity<Reminder>(HttpStatus.CONFLICT);
-						
-				}	
+        } catch (ReminderNotCreatedException e) {
+            return new ResponseEntity<Reminder>(HttpStatus.CONFLICT);
+                
+        }
 				
 	}
 

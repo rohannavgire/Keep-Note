@@ -43,6 +43,7 @@ public class ReminderServiceImpl implements ReminderService {
 	 * method of Respository interface.
 	 */
 	public Reminder createReminder(Reminder reminder) throws ReminderNotCreatedException {
+
 		reminder.setReminderCreationDate(new Date());
 		reminder = reminderRepository.insert(reminder);
 		
