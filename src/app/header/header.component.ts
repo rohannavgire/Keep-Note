@@ -9,6 +9,7 @@ import { RouterService } from '../services/router.service';
 import { CategoryService } from '../services/category.service';
 import { Category } from '../category';
 import { MatListModule } from '@angular/material/list';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-header',

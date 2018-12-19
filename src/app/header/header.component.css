@@ -1,7 +1,7 @@
 .sidenav-container {
 	height: 10vh;
   }
-  .sidenav {
+  .mat-nav-list {
 	width: 200px;
   }
   .sidenav .mat-toolbar {
