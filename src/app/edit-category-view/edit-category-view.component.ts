@@ -12,6 +12,8 @@ import { CategoryService } from '../services/category.service';
 })
 export class EditCategoryViewComponent implements OnInit {
 
+  notes : Note[];
+  filterNotes : Note[];
   category : Category;
   categories: Array<Category> = [];
   errMessage: string;
@@ -20,19 +22,32 @@ export class EditCategoryViewComponent implements OnInit {
   constructor(private notesService: NotesService, private catService: CategoryService, public dialogRef: MatDialogRef<EditCategoryViewComponent>,
     @Inject(MAT_DIALOG_DATA) public categoryId: any) { 
 
-      this.category = this.catService.getCategoryById(categoryId);   
+      this.category = this.catService.getCategoryById(categoryId);
+      this.filterNotes = [];
+      this.notesService.getNotes().subscribe(res => {
+        this.notes = res;
+        console.log("All notes: ",this.notes);
+        
+      }
+
+      ) 
     }
 
-    ngOnInit() {
-      // this.catService.getCategories().subscribe(data =>{
-      //    this.categories = data;       
-      //  },error =>{
-         
-      //  });
-    }
+    ngOnInit() {}
 
   onSave() {
-    this.catService.editCategory(this.category).subscribe(res => {      
+    this.catService.editCategory(this.category).subscribe(res => {  
+      this.filterNotes = this.notes.filter(note => note.category.categoryId == res.id);       
+
+      this.filterNotes.forEach(note => {        
+        note.category = res;
+        note.category.categoryId = res.id;
+        note.category.id = res.id;
+        this.notesService.editNote(note).subscribe(res => {
+        }  
+        )
+      })
+      
     },
   error=> {
     if(error.status == 404) {
