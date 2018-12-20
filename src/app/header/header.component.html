@@ -8,31 +8,26 @@
 	  <mat-nav-list>
 		<a mat-list-item routerLink="/login">Login</a>
 		<a mat-list-item routerLink="/dashboard">Dashboard</a>
-		<div *ngIf="isLoggedIn">
 		<h3 mat-subheader>Categories</h3>
 			<mat-list-item *ngFor="let category of categories">
 				<mat-icon mat-list-icon>folder</mat-icon>
 				<h3 mat-subheader>{{category.categoryName}}</h3>
-				<div class="keep-c-edit-category" (click)='openEditCategoryView(category)'>
-						<i class="material-icons">edit</i>
-					</div>
 				<div class="keep-c-delete-category" (click)='deleteCategory(category)'>
 					<i class="material-icons">delete_outline</i>
 				</div>
 			</mat-list-item>
 			<button mat-raised-button color="primary" (click)='openCreateCategoryView()'>Add Category</button>
-		</div>
 	</mat-nav-list>
 	</mat-sidenav>
 	<mat-sidenav-content>
 	  <mat-toolbar color="primary">
 		
 		<span>Keep</span>
-			<div class="keep-c-toggle-view" *ngIf="isLoggedIn" (click)='toggleView()'>
+			<div class="keep-c-toggle-view" (click)='toggleView()'>
 				<i *ngIf="isNoteView" class="material-icons switchToListView">view_list</i>
 				<i *ngIf="!isNoteView" class="material-icons switchToNoteView">view_quilt</i>
 			</div>
-			<div class="keep-c-logout" *ngIf="isLoggedIn" (click)='logout()'>
+			<div class="keep-c-logout" (click)='logout()'>
 				<mat-icon>exit_to_app</mat-icon>
 			</div>
 	  </mat-toolbar>
