@@ -1,5 +1,6 @@
 export class Category {
   id: string;
+  categoryId: string;
   categoryName: string;
   categoryDescription: string;
   categoryCreatedBy: string;
@@ -7,6 +8,7 @@ export class Category {
 
   constructor() {
     this.id = '';
+    this.categoryId = '';
     this.categoryName = '';
     this.categoryDescription = '';
     this.categoryCreatedBy = '';

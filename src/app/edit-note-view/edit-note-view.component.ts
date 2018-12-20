@@ -37,6 +37,7 @@ export class EditNoteViewComponent implements OnInit {
     }
 
   onSave() {
+    this.note.category.categoryId = this.note.category.id;
     this.notesService.editNote(this.note).subscribe(res => {      
     },
   error=> {

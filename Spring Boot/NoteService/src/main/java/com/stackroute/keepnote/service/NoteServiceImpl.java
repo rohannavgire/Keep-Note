@@ -48,6 +48,7 @@ public class NoteServiceImpl implements NoteService{
 				
 		NoteUser noteUser1 = null;
 		note.setNoteCreationDate(new Date());
+		System.out.println("YAYYYY CtaId of New Note: "+note.getCategory().getCategoryId());
 		try {
 			noteUser1 = noteRepository.findById(note.getNoteCreatedBy()).get();
 		}
@@ -58,6 +59,7 @@ public class NoteServiceImpl implements NoteService{
 			note.setNoteId(1);
 			notes.add(note);
 			noteUser1.setNotes(notes);
+			noteRepository.insert(noteUser1);
 			System.out.println("YAY returning from catch");
 			return true;
 		}
@@ -72,6 +74,7 @@ public class NoteServiceImpl implements NoteService{
 		note.setNoteId(totalNotes+1);
 		notes.add(note);
 		noteUser1.setNotes(notes);
+		noteRepository.save(noteUser1);
 		
 			int flag = 0;
 			noteRepository.save(noteUser1);

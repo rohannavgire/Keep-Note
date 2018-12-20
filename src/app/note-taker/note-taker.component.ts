@@ -43,6 +43,8 @@ export class NoteTakerComponent implements OnInit {
       throw new Error('Title and Text both are required fields');
     }
     else {
+      console.log("NOTE TBA: ",this.note.category.id);
+      this.note.category.categoryId = this.note.category.id;
     this.notes.push(this.note);
      this.noteService.addNote(this.note).subscribe(addedNote =>{
      

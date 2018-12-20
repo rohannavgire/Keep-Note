@@ -45,6 +45,7 @@ export class NotesService {
       headers : new HttpHeaders().set('authorization',`Bearer ${this.authService.getBearerToken()}`)
  
     }).do(addedNote => {
+      console.log("Note added: ", addedNote);
         this.notes.push(addedNote);
         this.notesSubject.next(this.notes);
       })    
@@ -61,7 +62,9 @@ export class NotesService {
       headers : new HttpHeaders().set('authorization',`Bearer ${this.authService.getBearerToken()}`)
     }).do(editedNote => {
       let foundNote = this.notes.find(note => note.noteId == editedNote.noteId);
-      Object.assign(foundNote,editedNote);      
+      let index = this.notes.indexOf(foundNote);
+      this.notes.splice(index, 1, editedNote);
+      Object.assign(foundNote,editedNote);
       this.notesSubject.next(this.notes);
     })
   }

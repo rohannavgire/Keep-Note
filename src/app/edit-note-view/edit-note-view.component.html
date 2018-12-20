@@ -19,8 +19,8 @@
 </mat-form-field>
 <mat-form-field>
 <mat-select name="editCategory" placeholder="Select Category" [(ngModel)]="note.category">
-  <mat-option *ngFor="let category of categories" [value]="category.categoryName">
-    {{ category }}
+  <mat-option *ngFor="let category of categories" [value]="category">
+    {{ category.categoryName }}
   </mat-option>
 </mat-select>
 </mat-form-field>
