@@ -130,7 +130,7 @@ public class CategoryController {
 		category.setCategoryDescription(category.getCategoryDescription());
 		category.setCategoryCreatedBy(category.getCategoryCreatedBy());
 		category.setCategoryCreationDate(category.getCategoryCreationDate());*/
-				
+		System.out.println("YAY cat tbe: "+ categoryId);
 		Category updatedCategory;
 
 			updatedCategory = categoryService.updateCategory(category, categoryId);

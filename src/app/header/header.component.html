@@ -12,6 +12,9 @@
 			<mat-list-item *ngFor="let category of categories">
 				<mat-icon mat-list-icon>folder</mat-icon>
 				<h3 mat-subheader>{{category.categoryName}}</h3>
+				<div class="keep-c-edit-category" (click)='openEditCategoryView(category)'>
+					<i class="material-icons">edit</i>
+				</div>
 				<div class="keep-c-delete-category" (click)='deleteCategory(category)'>
 					<i class="material-icons">delete_outline</i>
 				</div>

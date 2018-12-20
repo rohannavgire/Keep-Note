@@ -31,6 +31,13 @@
 	cursor: pointer;
 }
 
+.keep-c-edit-category {
+	margin-right: 5%;
+	margin-left: 0%;
+	padding-right: 0%;
+	cursor: pointer;
+}
+
 .mat-raised-button {
 	margin : 2%;
 }

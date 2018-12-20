@@ -12,7 +12,7 @@ public class Category {
 	 * of categoryCreationDate should not be accepted from the user but should be
 	 * always initialized with the system date.
 	 */
-	String categoryId;
+	String id;
 	String categoryName, categoryDescription, categoryCreatedBy;
 	Date categoryCreationDate;
 	
@@ -22,7 +22,7 @@ public class Category {
 
 	public Category(String categoryId, String categoryName, String categoryDescription, String categoryCreatedBy,
 			Date categoryCreationDate) {
-		this.categoryId = categoryId;
+		this.id = categoryId;
 		this.categoryName = categoryName;
 		this.categoryDescription = categoryDescription;
 		this.categoryCreatedBy = categoryCreatedBy;
@@ -30,11 +30,11 @@ public class Category {
 	}
 
 	public void setCategoryId(String string) {
-		this.categoryId = string;
+		this.id = string;
 	}
 
 	public String getCategoryId() {
-		return this.categoryId;
+		return this.id;
 	}
 
 	public String getCategoryName() {
@@ -71,7 +71,7 @@ public class Category {
 
 	@Override
 	public String toString() {
-		return "Category [categoryId=" + categoryId + ", categoryName=" + categoryName + ", categoryDescription="
+		return "Category [categoryId=" + id + ", categoryName=" + categoryName + ", categoryDescription="
 				+ categoryDescription + ", categoryCreatedBy=" + categoryCreatedBy + ", categoryCreationDate="
 				+ categoryCreationDate + "]";
 	}

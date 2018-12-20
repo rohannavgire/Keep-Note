@@ -24,6 +24,7 @@ export class RouterService {
     }
   ])
   }
+
   routeToCreateCategoryView(userId){
     this.router.navigate(['dashboard',{
     outlets: {
@@ -32,6 +33,16 @@ export class RouterService {
     }
   ])
   }
+
+  routeToEditCategoryView(categoryId){
+    this.router.navigate(['dashboard',{
+    outlets: {
+      'editCategoryOutlet': ['category', categoryId, 'edit']
+    }
+    }
+  ])
+  }
+
   routeBack() {
     this.location.back();
   }

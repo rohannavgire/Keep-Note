@@ -1,12 +1,12 @@
 export class Category {
-  categoryId: string;
+  id: string;
   categoryName: string;
   categoryDescription: string;
   categoryCreatedBy: string;
   categoryCreationDate: Date;
 
   constructor() {
-    this.categoryId = '';
+    this.id = '';
     this.categoryName = '';
     this.categoryDescription = '';
     this.categoryCreatedBy = '';
