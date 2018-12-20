@@ -32,7 +32,7 @@ export class AuthenticationService {
   } 
 
   isUserAuthenticated(token): Promise<boolean> {        
-    
+
     if(token)
       return Promise.resolve(true);
     else

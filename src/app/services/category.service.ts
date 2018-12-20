@@ -52,16 +52,16 @@ addCategory(category:Category):Observable<Category>{
 }
 
 getCategoryById(catId): Category {
-  let foundCategory =  this.categories.find(category => category.id == catId);
+  let foundCategory =  this.categories.find(category => category.categoryId == catId);
   
   return Object.assign({},foundCategory);
 }
 
 editCategory(category: Category): Observable<Category> {
-  return this.http.put<Category>(`http://localhost:8083/api/v1/category/${category.id}`,category,{
+  return this.http.put<Category>(`http://localhost:8083/api/v1/category/${category.categoryId}`,category,{
     headers : new HttpHeaders().set('authorization',`Bearer ${this.authService.getBearerToken()}`)
   }).do(editedCategory => {
-    let foundCategory = this.categories.find(category => category.id == editedCategory.id);
+    let foundCategory = this.categories.find(category => category.categoryId == editedCategory.categoryId);
     Object.assign(foundCategory,editedCategory);
     this.catSubject.next(this.categories);
   })
@@ -76,9 +76,9 @@ editCategory(category: Category): Observable<Category> {
 // }
 
 deleteCategory(category: Category) {
-  console.log("in cat service delete: ",category.id);
+  console.log("in cat service delete: ",category.categoryId);
   
-  this.http.delete<Category>(`http://localhost:8083/api/v1/category/${category.id}`,{
+  this.http.delete<Category>(`http://localhost:8083/api/v1/category/${category.categoryId}`,{
     headers : new HttpHeaders().set('authorization',`Bearer ${this.authService.getBearerToken()}`)
   })
 }

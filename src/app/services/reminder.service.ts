@@ -49,4 +49,15 @@ addReminder(reminder:Reminder):Observable<Reminder>{
       this.remSubject.next(this.reminderList);
     })    
 }
+
+deleteReminder(reminder: Reminder): Observable<Reminder> {
+  console.log("in rem service delete: ",reminder.reminderId);
+  
+  return this.http.delete<Reminder>(`http://localhost:8081/api/v1/reminder/${reminder.reminderId}`,{
+    headers : new HttpHeaders().set('authorization',`Bearer ${this.authService.getBearerToken()}`)
+  }).do(resp => {
+    console.log("resp: ", resp);
+    
+  })
+}
 }

@@ -61,9 +61,7 @@ export class NotesService {
       headers : new HttpHeaders().set('authorization',`Bearer ${this.authService.getBearerToken()}`)
     }).do(editedNote => {
       let foundNote = this.notes.find(note => note.noteId == editedNote.noteId);
-      Object.assign(foundNote,editedNote);
-      console.log("editedNote: ",editedNote);
-      
+      Object.assign(foundNote,editedNote);      
       this.notesSubject.next(this.notes);
     })
   }

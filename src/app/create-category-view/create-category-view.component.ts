@@ -32,6 +32,7 @@ export class CreateCategoryViewComponent implements OnInit {
 
   onSave() {
     this.category.categoryCreatedBy = localStorage.getItem('userId');
+    this.category.categoryId = null;
     this.catService.addCategory(this.category).subscribe(res => {      
     },
   error=> {

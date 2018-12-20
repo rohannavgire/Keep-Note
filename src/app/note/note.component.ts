@@ -36,7 +36,7 @@ readonly separatorKeysCodes: number[] = [ENTER, COMMA];
     this.reminder = new Reminder();
    }
 
-  ngOnInit() {
+  ngOnInit() {    
     this.updatedNote = this.note;
     this.reminders = this.note.reminders;
     this.category = this.note.category;
@@ -52,9 +52,10 @@ readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
     // Add our reminder
     if ((value || '').trim()) {
-      console.log("New rem name: ", value);
       
       this.reminder.reminderName = value.trim();
+      this.reminder.reminderId = null;
+      
       this.reminderService.addReminder(this.reminder).subscribe(res => {
         
         this.updatedNote.reminders.push(res);
@@ -68,8 +69,6 @@ readonly separatorKeysCodes: number[] = [ENTER, COMMA];
           this.errMessage = error.message;
         }
       });
-
-      // this.reminders.push(res);  
       
       },
     error=> {
@@ -96,5 +95,24 @@ readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   //     this.fruits.splice(index, 1);
   //   }
   // }
+
+  remove(reminder: Reminder): void {
+    console.log("Rem to remove: ", reminder.reminderId);
+      
+  this.reminderService.deleteReminder(reminder);
+
+    this.updatedNote.reminders.splice(this.updatedNote.reminders.indexOf(reminder), 1);
+    this.notesService.editNote(this.updatedNote).subscribe(res => {
+      this.reminders = this.updatedNote.reminders;     
+    },
+  error=> {
+    if(error.status == 404) {
+      this.errMessage = error.message;
+    }
+    else {
+      this.errMessage = error.message;
+    }
+  });
+  }
 
 }
