@@ -58,12 +58,14 @@ public class NoteServiceImpl implements NoteService{
 			note.setNoteId(1);
 			notes.add(note);
 			noteUser1.setNotes(notes);
+			System.out.println("YAY returning from catch");
 			return true;
 		}
 		List<Note> notes = noteUser1.getNotes();
 		int totalNotes = notes.size();
 		for(Note found: notes) {
 			if(found.getNoteId() == note.getNoteId()) {
+				System.out.println("YAY returning after catch");
 				return false;
 			}
 		}
@@ -78,6 +80,7 @@ public class NoteServiceImpl implements NoteService{
 					flag = 1;
 			}
 			
+			System.out.println("YAY Flag return");
         if(flag == 1)
             return true;
         else

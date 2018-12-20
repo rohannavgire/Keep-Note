@@ -29,6 +29,7 @@ export class NoteTakerComponent implements OnInit {
 
   ngOnInit() {
     this.categoryService.getCategories().subscribe(data =>{
+      console.log("YAY data: ",data);
       
       this.categories = data;   
     },error =>{
