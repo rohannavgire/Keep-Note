@@ -1,10 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { RouterService } from '../services/router.service';
 import { CategoryService } from '../services/category.service';
 import { Category } from '../category';
@@ -18,6 +17,8 @@ import { AuthenticationService } from '../services/authentication.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit{
+  
+  isLoggedIn : boolean;
   isNoteView = true;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -25,16 +26,23 @@ export class HeaderComponent implements OnInit{
     );
   categories : Category[];
     
-  constructor(private breakpointObserver: BreakpointObserver, private router: RouterService, private catService: CategoryService, private authService: AuthenticationService) {}
+  constructor(private breakpointObserver: BreakpointObserver, private router: RouterService, private catService: CategoryService, private authService: AuthenticationService) {
+    this.isLoggedIn = null;
+  }
 
   ngOnInit() {
-    this.catService.getCategories().subscribe(data =>{
-      console.log("YAY data: ",data);
-      
-      this.categories = data;   
-    },error =>{
-      
-    });
+    const booleanPromise = this.authService.isUserAuthenticated(this.authService.getBearerToken());
+    return booleanPromise.then((authenticated) => {
+      if (authenticated) {
+        this.isLoggedIn = true;
+        this.catService.getCategories().subscribe(data =>{      
+          this.categories = data;   
+        },error =>{
+          
+        });
+      }
+      return authenticated;
+      });        
   }
 
   toggleView() {
@@ -51,6 +59,11 @@ export class HeaderComponent implements OnInit{
 
   openCreateCategoryView() {    
     this.router.routeToCreateCategoryView(localStorage.getItem('userId'));
+  }
+
+  openEditCategoryView(category : Category) { 
+    console.log("categoryId tbe1: ",category);   
+    this.router.routeToEditCategoryView(category);
   }
 
   logout(){

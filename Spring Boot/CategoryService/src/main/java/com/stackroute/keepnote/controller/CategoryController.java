@@ -99,7 +99,6 @@ public class CategoryController {
 	public ResponseEntity<Category> deleteCategory(@PathVariable("id") String categoryId) {
 		
 		try {
-			System.out.println("YAY cat tbd: "+ categoryId);
 			if(!categoryService.deleteCategory(categoryId)) {
 				return new ResponseEntity<Category>(HttpStatus.NOT_FOUND);
 			}

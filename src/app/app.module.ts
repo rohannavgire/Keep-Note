@@ -31,6 +31,8 @@ import { CreateCategoryOpenerComponent } from './create-category-opener/create-c
 import { CreateCategoryViewComponent } from './create-category-view/create-category-view.component';
 import {MatChipsModule} from '@angular/material/chips';
 import { ReminderService } from './services/reminder.service';
+import { EditCategoryOpenerComponent } from './edit-category-opener/edit-category-opener.component';
+import { EditCategoryViewComponent } from './edit-category-view/edit-category-view.component';
 
 const appRoutes : Routes = [
   {
@@ -55,8 +57,12 @@ const appRoutes : Routes = [
         outlet: 'noteEditOutlet'
       },
       {
-        path: ':userId', component: CreateCategoryOpenerComponent,
+        path: 'category/:categoryId/edit', component: CreateCategoryOpenerComponent,
         outlet: 'createCategoryOutlet'
+      },
+      {
+        path: ':category', component: EditCategoryOpenerComponent,
+        outlet: 'editCategoryOutlet'
       }
     ]
   },
@@ -79,7 +85,9 @@ const appRoutes : Routes = [
     EditNoteOpenerComponent,
     EditNoteViewComponent,
     CreateCategoryOpenerComponent,
-    CreateCategoryViewComponent
+    CreateCategoryViewComponent,
+    EditCategoryOpenerComponent,
+    EditCategoryViewComponent
   ],
   imports: [
     BrowserModule,
@@ -104,6 +112,6 @@ const appRoutes : Routes = [
   ],
   providers: [NotesService,CanActivateRouteGuard,RouterService,AuthenticationService,CategoryService,ReminderService],
   bootstrap: [AppComponent],
-  entryComponents: [EditNoteViewComponent, CreateCategoryViewComponent]
+  entryComponents: [EditNoteViewComponent, CreateCategoryViewComponent, EditCategoryViewComponent]
 })
 export class AppModule { }

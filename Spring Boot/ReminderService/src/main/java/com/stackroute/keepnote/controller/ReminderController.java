@@ -110,7 +110,6 @@ public class ReminderController {
 	public ResponseEntity<Reminder> deleteReminder(@PathVariable("id") String reminderId) {
 		
 		try {
-			System.out.println("YAY remTBD: "+reminderId);
 			if(!reminderService.deleteReminder(reminderId)) {
 				return new ResponseEntity<Reminder>(HttpStatus.NOT_FOUND);
 			}

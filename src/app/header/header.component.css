@@ -31,6 +31,19 @@
 	cursor: pointer;
 }
 
+.keep-c-edit-category {
+	margin-right: 5%;
+	margin-left: 0%;
+	padding-right: 0%;
+	cursor: pointer;
+}
+
+.mat-list-item {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
 .mat-raised-button {
 	margin : 2%;
 }

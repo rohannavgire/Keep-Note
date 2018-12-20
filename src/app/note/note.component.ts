@@ -59,7 +59,8 @@ readonly separatorKeysCodes: number[] = [ENTER, COMMA];
       this.reminderService.addReminder(this.reminder).subscribe(res => {
         
         this.updatedNote.reminders.push(res);
-        this.notesService.editNote(this.updatedNote).subscribe(res => {      
+        this.notesService.editNote(this.updatedNote).subscribe(res => {
+          this.reminders = this.updatedNote.reminders;    
         },
       error=> {
         if(error.status == 404) {
@@ -103,7 +104,7 @@ readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
     this.updatedNote.reminders.splice(this.updatedNote.reminders.indexOf(reminder), 1);
     this.notesService.editNote(this.updatedNote).subscribe(res => {
-      this.reminders = this.updatedNote.reminders;     
+      this.reminders = this.updatedNote.reminders;
     },
   error=> {
     if(error.status == 404) {

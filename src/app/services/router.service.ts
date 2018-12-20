@@ -32,6 +32,14 @@ export class RouterService {
     }
   ])
   }
+  routeToEditCategoryView(categoryId){
+    this.router.navigate(['dashboard',{
+    outlets: {
+      'editCategoryOutlet': [categoryId]
+    }
+    }
+  ])
+  }
   routeBack() {
     this.location.back();
   }

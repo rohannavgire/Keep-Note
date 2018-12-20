@@ -21,7 +21,6 @@ export class NotesService {
 
   fetchNotesFromServer() {
     let userId = localStorage.getItem('userId');
-    console.log("YAY Fetching user: ", userId);
     
     this.http.get<Note[]>(`http://localhost:8082/api/v1/note/${userId}`,{
       headers : new HttpHeaders().set('authorization',`Bearer ${this.authService.getBearerToken()}`)
@@ -39,7 +38,6 @@ export class NotesService {
 }
 
   addNote(note:Note):Observable<Note>{
-    console.log("Note tba: ", note);
     note.noteCreatedBy = localStorage.getItem('userId');
     return this.http.post<Note>('http://localhost:8082/api/v1/note',note,{
       headers : new HttpHeaders().set('authorization',`Bearer ${this.authService.getBearerToken()}`)
