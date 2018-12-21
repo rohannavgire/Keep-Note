@@ -11,6 +11,7 @@ import { Category } from '../category';
 import { MatListModule } from '@angular/material/list';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { AuthenticationService } from '../services/authentication.service';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-header',
@@ -19,6 +20,7 @@ import { AuthenticationService } from '../services/authentication.service';
 })
 export class HeaderComponent implements OnInit{
   isNoteView = true;
+  category : Category;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches)
@@ -31,7 +33,8 @@ export class HeaderComponent implements OnInit{
     this.catService.getCategories().subscribe(data =>{
       console.log("YAY data: ",data);
       
-      this.categories = data;   
+      this.categories = data;
+      this.category = null;   
     },error =>{
       
     });
@@ -49,7 +52,23 @@ export class HeaderComponent implements OnInit{
     }
   }
 
-  openCreateCategoryView() {    
+  showCategoryNotes(category : Category) {
+    console.log("showCategoryNotes: ", category);
+    this.category = category;
+    // if(this.category == null) {
+    //   this.category = category;
+    // }
+    // else if(this.category == category){
+    //   this.router.routeToCategoryView(this.category, this.isNoteView);
+    // }
+    if(this.category != category){
+      this.category = category;
+    }
+    
+    this.router.routeToCategoryView(this.category, this.isNoteView);
+  }
+
+  openCreateCategoryView() {   
     this.router.routeToCreateCategoryView(localStorage.getItem('userId'));
   }
 

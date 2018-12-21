@@ -33,6 +33,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import { ReminderService } from './services/reminder.service';
 import { EditCategoryOpenerComponent } from './edit-category-opener/edit-category-opener.component';
 import { EditCategoryViewComponent } from './edit-category-view/edit-category-view.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 const appRoutes : Routes = [
   {
@@ -48,6 +49,12 @@ const appRoutes : Routes = [
       },
       {
         path: 'view/listview', component: ListViewComponent
+      },
+      {
+        path: 'view/noteview/:categoryId', component: NoteViewComponent
+      },
+      {
+        path: 'view/listview/:categoryId', component: ListViewComponent
       },
       {
         path: '', redirectTo: 'view/noteview', pathMatch: 'full'
@@ -108,7 +115,8 @@ const appRoutes : Routes = [
     RouterModule.forRoot(appRoutes),
     MatDialogModule,
     MatSelectModule,
-    MatChipsModule
+    MatChipsModule,
+    MatTooltipModule
   ],
   providers: [NotesService,CanActivateRouteGuard,RouterService,AuthenticationService,CategoryService,ReminderService],
   bootstrap: [AppComponent],

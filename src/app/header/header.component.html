@@ -11,7 +11,7 @@
 		<h3 mat-subheader>Categories</h3>
 			<mat-list-item *ngFor="let category of categories">
 				<mat-icon mat-list-icon>folder</mat-icon>
-				<h3 mat-subheader>{{category.categoryName}}</h3>
+				<h3 mat-subheader matTooltip="Click to see notes of this category." (click)='showCategoryNotes(category)'>{{category.categoryName}}</h3>
 				<div class="keep-c-edit-category" (click)='openEditCategoryView(category)'>
 					<i class="material-icons">edit</i>
 				</div>
