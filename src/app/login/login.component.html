@@ -12,7 +12,9 @@
         <input class="userPassword" type="password" matInput placeholder="Enter Password" formControlName="userPassword">
         <mat-error *ngIf="loginForm.get('userPassword').touched && loginForm.get('userPassword').hasError('required')">Password is Required</mat-error>
         <mat-error *ngIf="loginForm.get('userPassword')?.touched && loginForm.get('userPassword').hasError('minlength')">Password must be atleast 6 characters long</mat-error>
-      </mat-form-field>
-      <button mat-button [disabled]="loginForm.invalid">Submit</button>
+      </mat-form-field>      
+      <button mat-button [disabled]="loginForm.invalid">Submit</button>      
     </form>
+    <button mat-raised-button color="primary" (click)='openCreateUserView()'>New User?</button>
+    <router-outlet name="createUserOutlet"></router-outlet>
   </div>

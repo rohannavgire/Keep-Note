@@ -9,6 +9,25 @@ export class RouterService {
   routeToLogin(){
     this.router.navigate(['login'])
   }
+  // routeToCreateUserView(){
+  //   console.log("Create user view1.");
+  //   this.router.navigate(['register',{
+  //   outlets: {
+  //     'createUserOutlet': []
+  //   }
+  //   }
+  // ])
+  // }
+
+  routeToCreateUserView(){
+    this.router.navigate(['register',{
+    outlets: {
+      'createUserOutlet': []
+    }
+    }
+  ])
+  }
+
   routeToDashboard(){
     this.router.navigate(['dashboard']);
   }
@@ -69,7 +88,7 @@ export class RouterService {
     }
     }
   ])
-  }
+  }  
 
   routeBack() {
     this.location.back();

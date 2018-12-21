@@ -64,8 +64,12 @@ public class UserAuthenticationController {
     @ApiOperation(value = "Registration for a User.")
     @PostMapping(value = "/api/v1/auth/register", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<User> registerUser(@RequestBody User user) throws UserAlreadyExistsException {
-			
-    	authenticationService.saveUser(user);														
+		try {
+    	authenticationService.saveUser(user);				
+		}
+		catch(UserAlreadyExistsException e) {
+			return new ResponseEntity<User>(user, HttpStatus.CONFLICT);
+		}
     	return new ResponseEntity<User>(user, HttpStatus.CREATED);
 		}
 					

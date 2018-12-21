@@ -61,4 +61,8 @@ loginSubmit(){
   this.formGroupDirective.resetForm();
 }
 
+openCreateUserView() {       
+  this.router.routeToCreateUserView();
+}
+
 }

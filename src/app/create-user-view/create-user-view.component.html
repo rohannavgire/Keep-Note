@@ -1,0 +1,30 @@
+<div class="user-taker-form">
+
+  <!-- Label to display any error messages -->
+  
+  <label class="error-message">{{ errMessage }}</label>
+  
+  <mat-form-field> 
+    <input [(ngModel)]="user.userId" name="userId" matInput placeholder="User ID" type="text">
+  </mat-form-field>
+  <br>
+  <mat-form-field> 
+    <input [(ngModel)]="user.userPassword" name="userPassword" matInput placeholder="Password" type="password">
+  </mat-form-field>
+  <br>
+  <mat-form-field> 
+    <input [(ngModel)]="user.firstName" name="firstName" matInput placeholder="First Name" type="text">
+  </mat-form-field>
+  <br>
+  <mat-form-field> 
+    <input [(ngModel)]="user.lastName" name="lastName" matInput placeholder="Last Name" type="text">
+  </mat-form-field>
+  <br>
+  <mat-form-field> 
+    <input [(ngModel)]="user.userRole" name="userRole" matInput placeholder="Role" type="text">
+  </mat-form-field>
+  <br>
+  <div class="keep-c-done-wrapper">
+    <button mat-button (click)="onSave()">Register</button>
+  </div>
+  </div>

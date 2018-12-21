@@ -34,10 +34,17 @@ import { ReminderService } from './services/reminder.service';
 import { EditCategoryOpenerComponent } from './edit-category-opener/edit-category-opener.component';
 import { EditCategoryViewComponent } from './edit-category-view/edit-category-view.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { CreateUserOpenerComponent } from './create-user-opener/create-user-opener.component';
+import { CreateUserViewComponent } from './create-user-view/create-user-view.component';
+import { UserService } from './services/user.service';
+import { MatSnackBarModule } from "@angular/material";
 
 const appRoutes : Routes = [
   {
     path:'login',component:LoginComponent
+  },
+  {
+    path:'register',component:CreateUserOpenerComponent    
   },
   {
     path:'dashboard',
@@ -71,6 +78,10 @@ const appRoutes : Routes = [
         path: 'category/:categoryId/edit', component: EditCategoryOpenerComponent,
         outlet: 'editCategoryOutlet'
       }
+      // {
+      //   path: 'register', component: CreateUserOpenerComponent,
+      //   outlet: 'createUserOutlet'
+      // }
     ]
   },
   {
@@ -94,7 +105,9 @@ const appRoutes : Routes = [
     CreateCategoryOpenerComponent,
     CreateCategoryViewComponent,
     EditCategoryOpenerComponent,
-    EditCategoryViewComponent
+    EditCategoryViewComponent,
+    CreateUserOpenerComponent,
+    CreateUserViewComponent
   ],
   imports: [
     BrowserModule,
@@ -116,10 +129,11 @@ const appRoutes : Routes = [
     MatDialogModule,
     MatSelectModule,
     MatChipsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatSnackBarModule
   ],
-  providers: [NotesService,CanActivateRouteGuard,RouterService,AuthenticationService,CategoryService,ReminderService],
+  providers: [NotesService,CanActivateRouteGuard,RouterService,AuthenticationService,CategoryService,ReminderService,UserService],
   bootstrap: [AppComponent],
-  entryComponents: [EditNoteViewComponent, CreateCategoryViewComponent, EditCategoryViewComponent]
+  entryComponents: [EditNoteViewComponent, CreateCategoryViewComponent, EditCategoryViewComponent, CreateUserViewComponent]
 })
 export class AppModule { }
