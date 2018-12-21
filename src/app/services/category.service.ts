@@ -20,7 +20,6 @@ export class CategoryService {
 
    fetchCategoriesFromServer() {
     let userId = localStorage.getItem('userId');
-    console.log("YAY Category Fetching user: ", userId);
     
     this.http.get<Category[]>(`http://localhost:8083/api/v1/category/all/${userId}`,{
       headers : new HttpHeaders().set('authorization',`Bearer ${this.authService.getBearerToken()}`)
@@ -40,7 +39,6 @@ export class CategoryService {
 }
 
 addCategory(category:Category):Observable<Category>{
-  console.log("Category tba: ", category);
   category.categoryCreatedBy = localStorage.getItem('userId');
   return this.http.post<Category>('http://localhost:8083/api/v1/category',category,{
     headers : new HttpHeaders().set('authorization',`Bearer ${this.authService.getBearerToken()}`)

@@ -97,7 +97,6 @@ readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   // }
 
   remove(reminder: Reminder): void {
-    console.log("Rem to remove: ", reminder.reminderId);
       
   this.reminderService.deleteReminder(reminder);
 

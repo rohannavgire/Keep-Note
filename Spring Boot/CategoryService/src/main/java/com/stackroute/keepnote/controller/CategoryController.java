@@ -126,11 +126,6 @@ public class CategoryController {
 	@PutMapping(value = "/api/v1/category/{id}")
 	public ResponseEntity<Category> updateCategory(@PathVariable("id") String categoryId, @RequestBody Category category) {
 	
-		/*category.setCategoryName(category.getCategoryName());
-		category.setCategoryDescription(category.getCategoryDescription());
-		category.setCategoryCreatedBy(category.getCategoryCreatedBy());
-		category.setCategoryCreationDate(category.getCategoryCreationDate());*/
-		System.out.println("YAY cat tbe: "+ categoryId);
 		Category updatedCategory;
 
 			updatedCategory = categoryService.updateCategory(category, categoryId);

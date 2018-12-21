@@ -90,7 +90,6 @@ public class UserAuthenticationController {
 	public ResponseEntity<?> login(@RequestBody User user) throws ServletException {
     		String jwtToken = null;
     		try {
-    			System.out.println("YAY Trying User: "+ user);
     			jwtToken = getToken(user.getUserId(), user.getUserPassword());
     			map.clear();
     			map.put("message", "User logged in!");

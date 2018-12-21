@@ -48,7 +48,7 @@ public class NoteServiceImpl implements NoteService{
 				
 		NoteUser noteUser1 = null;
 		note.setNoteCreationDate(new Date());
-		System.out.println("YAYYYY CtaId of New Note: "+note.getCategory().getCategoryId());
+
 		try {
 			noteUser1 = noteRepository.findById(note.getNoteCreatedBy()).get();
 		}
@@ -60,14 +60,13 @@ public class NoteServiceImpl implements NoteService{
 			notes.add(note);
 			noteUser1.setNotes(notes);
 			noteRepository.insert(noteUser1);
-			System.out.println("YAY returning from catch");
+
 			return true;
 		}
 		List<Note> notes = noteUser1.getNotes();
 		int totalNotes = notes.size();
 		for(Note found: notes) {
 			if(found.getNoteId() == note.getNoteId()) {
-				System.out.println("YAY returning after catch");
 				return false;
 			}
 		}
@@ -83,27 +82,12 @@ public class NoteServiceImpl implements NoteService{
 					flag = 1;
 			}
 			
-			System.out.println("YAY Flag return");
         if(flag == 1)
             return true;
         else
         	return false;
 
-	}
-	/*public Boolean createNote(Note note) {      
-        NoteUser noteUser = new NoteUser();
-        List<Note> noteList = new ArrayList<>();
-        note.setNoteCreationDate(new Date());
-        noteList.add(note);
-        noteUser.setUserId(note.getNoteCreatedBy());
-        noteUser.setNotes(noteList);
-        NoteUser n = noteRepository.insert(noteUser);
-        if(n == null) {
-            return false;
-        } else {
-            return true;
-        }
-    }*/
+	}	
 	
 	/* This method should be used to delete an existing note. */
 

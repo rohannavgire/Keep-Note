@@ -19,7 +19,6 @@ export class ReminderService {
 
    fetchRemindersFromServer() {
     let userId = localStorage.getItem('userId');
-    console.log("YAY Category Fetching user: ", userId);
     
     this.http.get<Reminder[]>(`http://localhost:8081/api/v1/reminder/all/${userId}`,{
       headers : new HttpHeaders().set('authorization',`Bearer ${this.authService.getBearerToken()}`)
@@ -39,7 +38,6 @@ export class ReminderService {
 }
 
 addReminder(reminder:Reminder):Observable<Reminder>{
-  console.log("Reminder tba: ", reminder);
   reminder.reminderCreatedBy = localStorage.getItem('userId');
   return this.http.post<Reminder>('http://localhost:8081/api/v1/reminder',reminder,{
     headers : new HttpHeaders().set('authorization',`Bearer ${this.authService.getBearerToken()}`)

@@ -63,7 +63,7 @@ public class NoteController {
 	@ApiOperation(value = "Creates a new Note.")
 	@PostMapping(value = "/api/v1/note")
 	public ResponseEntity<Note> createNote(@RequestBody Note note) {
-		System.out.println("YAY Note tba: "+note);
+
 			if(noteService.createNote(note))
 				return new ResponseEntity<Note>(note, HttpStatus.CREATED);
 			else

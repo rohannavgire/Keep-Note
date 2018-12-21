@@ -28,9 +28,7 @@ export class NoteTakerComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.categoryService.getCategories().subscribe(data =>{
-      console.log("YAY data: ",data);
-      
+    this.categoryService.getCategories().subscribe(data =>{      
       this.categories = data;   
     },error =>{
       
@@ -43,7 +41,6 @@ export class NoteTakerComponent implements OnInit {
       throw new Error('Title and Text both are required fields');
     }
     else {
-      console.log("NOTE TBA: ",this.note.category.id);
       this.note.category.categoryId = this.note.category.id;
     this.notes.push(this.note);
      this.noteService.addNote(this.note).subscribe(addedNote =>{

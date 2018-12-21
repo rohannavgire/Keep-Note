@@ -25,9 +25,7 @@ export class EditCategoryViewComponent implements OnInit {
       this.category = this.catService.getCategoryById(categoryId);
       this.filterNotes = [];
       this.notesService.getNotes().subscribe(res => {
-        this.notes = res;
-        console.log("All notes: ",this.notes);
-        
+        this.notes = res;        
       }
 
       ) 

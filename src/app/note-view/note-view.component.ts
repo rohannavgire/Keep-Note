@@ -14,26 +14,20 @@ export class NoteViewComponent implements OnInit {
   filterNotes : Note[];
   constructor(private notesService : NotesService, private activatedRoute: ActivatedRoute) {
     this.categoryId = this.activatedRoute.snapshot.paramMap.get('categoryId');
-    console.log("Cat Viewss: ",this.categoryId);
     activatedRoute.params.subscribe(val => {
       
       this.categoryId = val.categoryId;
       
       if(!this.categoryId) {
-        console.log("Inside no cat: ",this.categoryId);
         this.notesService.getNotes().subscribe(data =>{
           this.notes = data;       
         },error =>{
         });
       }
       else {
-        console.log("Inside yes cat: ",this.categoryId);
         this.notesService.getNotes().subscribe(data =>{
-          this.filterNotes = data;
-          console.log("All Notes: ", this.filterNotes);
-          
-          this.notes = this.filterNotes.filter(note => note.category.categoryId == this.categoryId);
-          console.log("Filter notes: ", this.notes);        
+          this.filterNotes = data;          
+          this.notes = this.filterNotes.filter(note => note.category.categoryId == this.categoryId);     
         },error =>{
         });
       }

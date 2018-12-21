@@ -18,13 +18,11 @@ export class ListViewComponent implements OnInit {
 
   constructor(private notesService : NotesService, private activatedRoute: ActivatedRoute) {
     this.categoryId = this.activatedRoute.snapshot.paramMap.get('categoryId');
-    console.log("Cat Viewss: ",this.categoryId);
     activatedRoute.params.subscribe(val => {
       
       this.categoryId = val.categoryId;
       
       if(!this.categoryId) {
-        console.log("Inside no cat: ",this.categoryId);
         this.notesService.getNotes().subscribe(data =>{
           this.notes = data;
           this.notStartedNotes = data.filter(data => data.noteStatus == 'not-started');
@@ -35,14 +33,12 @@ export class ListViewComponent implements OnInit {
         });
       }
       else {
-        console.log("Inside yes cat: ",this.categoryId);
         this.notesService.getNotes().subscribe(data =>{
           this.filterNotes = data;
           this.notes = this.filterNotes.filter(note => note.category.categoryId == this.categoryId);
           this.notStartedNotes = this.notes.filter(data => data.noteStatus == 'not-started');
           this.startedNotes = this.notes.filter(data => data.noteStatus == 'started');
-          this.completedNotes = this.notes.filter(data => data.noteStatus == 'completed');
-          console.log("Filter notes: ", this.notes);        
+          this.completedNotes = this.notes.filter(data => data.noteStatus == 'completed');    
         },error =>{
         });
       }

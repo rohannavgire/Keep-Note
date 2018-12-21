@@ -31,7 +31,6 @@ export class HeaderComponent implements OnInit{
 
   ngOnInit() {
     this.catService.getCategories().subscribe(data =>{
-      console.log("YAY data: ",data);
       
       this.categories = data;
       this.category = null;   
@@ -53,7 +52,6 @@ export class HeaderComponent implements OnInit{
   }
 
   showCategoryNotes(category : Category) {
-    console.log("showCategoryNotes: ", category);
     this.category = category;
     
     if(this.category != category){

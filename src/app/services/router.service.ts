@@ -19,7 +19,6 @@ export class RouterService {
     this.router.navigate(['dashboard/view/listview']);
   }
   routeToCategoryView(category : Category, isNoteView : boolean){
-    console.log("routeToCategoryView: ",category);
     if(category != null) {
       this.categoryId = category.id;
     }

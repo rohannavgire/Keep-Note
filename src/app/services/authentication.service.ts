@@ -8,9 +8,7 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient) { }
 
-  authenticateUser(user:User){
-    console.log("Tryinggg: ", user);
-    
+  authenticateUser(user:User){    
     return this.http.post('http://localhost:8089/api/v1/auth/login',user);
   }
 
