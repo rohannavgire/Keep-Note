@@ -114,4 +114,17 @@ readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   });
   }
 
+  deleteNote(note : Note) {
+    this.notesService.deleteNote(note).subscribe(res => {      
+    },
+  error=> {
+    if(error.status == 404) {
+      this.errMessage = error.message;
+    }
+    else {
+      this.errMessage = error.message;
+    }
+  });  
+  }
+
 }

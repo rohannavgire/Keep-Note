@@ -65,4 +65,13 @@ export class NotesService {
       this.notesSubject.next(this.notes);
     })
   }
+
+  deleteNote(note: Note) {
+    return this.http.delete<Note>(`http://localhost:8082/api/v1/note/${note.noteCreatedBy}/${note.noteId}`,{
+      headers : new HttpHeaders().set('authorization',`Bearer ${this.authService.getBearerToken()}`)
+    }).do(res => {
+      this.notes.splice(this.notes.indexOf(note), 1);
+      this.notesSubject.next(this.notes);
+    })
+  }
 }
