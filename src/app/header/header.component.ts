@@ -55,12 +55,7 @@ export class HeaderComponent implements OnInit{
   showCategoryNotes(category : Category) {
     console.log("showCategoryNotes: ", category);
     this.category = category;
-    // if(this.category == null) {
-    //   this.category = category;
-    // }
-    // else if(this.category == category){
-    //   this.router.routeToCategoryView(this.category, this.isNoteView);
-    // }
+    
     if(this.category != category){
       this.category = category;
     }

@@ -30,34 +30,17 @@ export class NoteViewComponent implements OnInit {
         console.log("Inside yes cat: ",this.categoryId);
         this.notesService.getNotes().subscribe(data =>{
           this.filterNotes = data;
+          console.log("All Notes: ", this.filterNotes);
+          
           this.notes = this.filterNotes.filter(note => note.category.categoryId == this.categoryId);
           console.log("Filter notes: ", this.notes);        
         },error =>{
         });
       }
     });
-    // this.notes = [];       
+
    }
 
-  ngOnInit() {
-    console.log("Final notes: ", this.notes);
-    
-    // if(!this.categoryId) {
-    //   console.log("Inside no cat: ",this.categoryId);
-    //   this.notesService.getNotes().subscribe(data =>{
-    //     this.notes = data;       
-    //   },error =>{
-    //   });
-    // }
-    // else {
-    //   console.log("Inside yes cat: ",this.categoryId);
-    //   this.notesService.getNotes().subscribe(data =>{
-    //     this.filterNotes = data;
-    //     this.notes = this.filterNotes.filter(note => note.category.categoryId == this.categoryId);
-    //     console.log("Filter notes: ", this.notes);        
-    //   },error =>{
-    //   });
-    // }
-  }
+  ngOnInit() {}
 
 }

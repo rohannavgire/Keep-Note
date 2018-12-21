@@ -25,7 +25,10 @@ export class EditNoteViewComponent implements OnInit {
         
       });
 
-      this.note = this.notesService.getNoteById(noteId);   
+      this.note = this.notesService.getNoteById(noteId); 
+      console.log("PREEDIT1: ", this.note.category.id);
+      console.log("PREEIDT2: ", this.note.category.categoryId);
+        
     }
 
     ngOnInit() {
@@ -37,8 +40,17 @@ export class EditNoteViewComponent implements OnInit {
     }
 
   onSave() {
-    this.note.category.categoryId = this.note.category.id;
-    this.notesService.editNote(this.note).subscribe(res => {      
+    console.log("PREEDIT3: ", this.note.category.id);
+    console.log("PREEIDT4: ", this.note.category.categoryId);
+    if(this.note.category.categoryId) {
+      this.note.category.id = this.note.category.categoryId;
+    }
+    else if(this.note.category.id) {
+      this.note.category.categoryId = this.note.category.id;
+    }
+    this.notesService.editNote(this.note).subscribe(res => { 
+      console.log("PREEDIT5: ", res.category.id);
+      console.log("PREEIDT6: ", res.category.categoryId);     
     },
   error=> {
     if(error.status == 404) {
