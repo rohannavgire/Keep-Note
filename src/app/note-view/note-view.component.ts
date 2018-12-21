@@ -26,7 +26,8 @@ export class NoteViewComponent implements OnInit {
       }
       else {
         this.notesService.getNotes().subscribe(data =>{
-          this.filterNotes = data;          
+          this.filterNotes = data;        
+          this.filterNotes = this.filterNotes.filter(note => note.category != null);
           this.notes = this.filterNotes.filter(note => note.category.categoryId == this.categoryId);     
         },error =>{
         });

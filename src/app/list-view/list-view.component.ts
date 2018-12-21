@@ -35,6 +35,7 @@ export class ListViewComponent implements OnInit {
       else {
         this.notesService.getNotes().subscribe(data =>{
           this.filterNotes = data;
+          this.filterNotes = this.filterNotes.filter(note => note.category != null);
           this.notes = this.filterNotes.filter(note => note.category.categoryId == this.categoryId);
           this.notStartedNotes = this.notes.filter(data => data.noteStatus == 'not-started');
           this.startedNotes = this.notes.filter(data => data.noteStatus == 'started');

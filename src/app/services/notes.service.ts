@@ -39,6 +39,7 @@ export class NotesService {
 
   addNote(note:Note):Observable<Note>{
     note.noteCreatedBy = localStorage.getItem('userId');
+    
     return this.http.post<Note>('http://localhost:8082/api/v1/note',note,{
       headers : new HttpHeaders().set('authorization',`Bearer ${this.authService.getBearerToken()}`)
  

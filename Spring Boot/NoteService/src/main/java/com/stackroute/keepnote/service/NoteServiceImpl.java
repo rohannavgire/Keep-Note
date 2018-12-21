@@ -44,8 +44,7 @@ public class NoteServiceImpl implements NoteService{
 	/*
 	 * This method should be used to save a new note.
 	 */
-	public Boolean createNote(Note note) {		
-				
+	public Boolean createNote(Note note) {			
 		NoteUser noteUser1 = null;
 		note.setNoteCreationDate(new Date());
 

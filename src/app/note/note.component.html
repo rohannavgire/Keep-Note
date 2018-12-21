@@ -1,6 +1,6 @@
 <mat-card class="note-card">
     <mat-card-title name="title">{{note.noteTitle}}</mat-card-title>
-    <mat-card-subtitle name="category">Category: {{category.categoryName}}</mat-card-subtitle>
+    <mat-card-subtitle *ngIf="category" name="category">Category: {{category.categoryName}}</mat-card-subtitle>
     <mat-card-content>{{note.noteContent}}</mat-card-content>
     <mat-form-field class="example-chip-list">
       <mat-chip-list #chipList>
