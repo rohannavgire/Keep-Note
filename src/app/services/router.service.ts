@@ -65,7 +65,6 @@ export class RouterService {
   }
 
   routeToEditReminderView(reminderId){
-    console.log("rem tbe in editremview: ",reminderId);
     this.router.navigate(['dashboard',{
     outlets: {
       'editReminderOutlet': ['reminder', reminderId, 'edit']

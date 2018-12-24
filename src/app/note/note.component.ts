@@ -116,7 +116,6 @@ readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   }
 
   editReminder(reminder) {
-    console.log("rem tbe in note.comp: ",reminder);
     
     this.reminderId = reminder.reminderId;
     this.router.routeToEditReminderView(this.reminderId);

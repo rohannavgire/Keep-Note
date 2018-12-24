@@ -25,7 +25,6 @@ export class EditReminderViewComponent implements OnInit {
   constructor(private notesService: NotesService, private remService: ReminderService, public dialogRef: MatDialogRef<EditReminderViewComponent>,
     @Inject(MAT_DIALOG_DATA) public reminderId: any) { 
       this.remId = reminderId;
-      console.log("rem tbe in editviewcomp: ",this.remId);
       this.filterNotes = [];
       this.filterReminders = [];
       this.notesService.getNotes().subscribe(res => {
@@ -56,7 +55,6 @@ export class EditReminderViewComponent implements OnInit {
 
   onSave() {
     this.remService.editReminder(this.reminder).subscribe(res => {
-      console.log("After editrem call: ",res);
         
       this.filterNotes = this.notes.filter(note => note.reminders.find(function(element) {
         return element.reminderId == res.reminderId;
@@ -64,14 +62,9 @@ export class EditReminderViewComponent implements OnInit {
 
       this.filterNotes.forEach(note => {        
         
-        note.reminders.forEach(reminder => {
-          console.log("check1: ",(reminder.reminderId));
-          console.log("check2: ",(this.remId));
-          console.log("check3: ",(reminder.reminderId == this.remId));
+        note.reminders.forEach(reminder => {          
           
           if(reminder.reminderId == this.remId) {
-            console.log("NOteRem: ",reminder);
-            console.log("NOteRes: ",res);
             note.reminders.splice(note.reminders.indexOf(reminder),1,res);
           }
         })

@@ -58,13 +58,9 @@ getReminderById(reminderId): Observable<Reminder> {
 }
 
 editReminder(reminder: Reminder): Observable<Reminder> {
-  console.log("Reminder TBE: ", reminder);
-  
   return this.http.put<Reminder>(`http://localhost:8081/api/v1/reminder/${reminder.reminderId}`,reminder,{
     headers : new HttpHeaders().set('authorization',`Bearer ${this.authService.getBearerToken()}`)
   }).do(editedReminder => {
-    console.log("editremDO: ", editedReminder);
-    
     let foundReminder = this.reminderList.find(reminder => reminder.reminderId == editedReminder.reminderId);
     Object.assign(foundReminder,editedReminder);
     this.remSubject.next(this.reminderList);

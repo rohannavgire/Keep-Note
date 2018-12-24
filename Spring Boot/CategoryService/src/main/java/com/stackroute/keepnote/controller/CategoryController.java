@@ -96,9 +96,7 @@ public class CategoryController {
 	@ApiOperation(value = "Deletes a Category.")
 	@DeleteMapping(value = "/api/v1/category/{id}")
 	public ResponseEntity<Category> deleteCategory(@PathVariable("id") String categoryId) {
-		System.out.println("YAY cat TBDDD: "+ categoryId);
 		try {
-			System.out.println("YAY cat tbd: "+ categoryId);
 			if(!categoryService.deleteCategory(categoryId)) {
 				return new ResponseEntity<Category>(HttpStatus.NOT_FOUND);
 			}

@@ -93,7 +93,6 @@ export class HeaderComponent implements OnInit{
   }
 
   deleteCategory(category : Category) {
-    console.log("Inside header comp deleteCat");
              
     this.catService.deleteCategory(category).subscribe(res => {  
       this.filterNotes = this.notes.filter(note => note.category.categoryId == category.id);       
