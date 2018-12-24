@@ -38,6 +38,8 @@ import { CreateUserOpenerComponent } from './create-user-opener/create-user-open
 import { CreateUserViewComponent } from './create-user-view/create-user-view.component';
 import { UserService } from './services/user.service';
 import { MatSnackBarModule } from "@angular/material";
+import { EditReminderOpenerComponent } from './edit-reminder-opener/edit-reminder-opener.component';
+import { EditReminderViewComponent } from './edit-reminder-view/edit-reminder-view.component';
 
 const appRoutes : Routes = [
   {
@@ -77,11 +79,11 @@ const appRoutes : Routes = [
       {
         path: 'category/:categoryId/edit', component: EditCategoryOpenerComponent,
         outlet: 'editCategoryOutlet'
+      },
+      {
+        path: 'reminder/:reminderId/edit', component: EditReminderOpenerComponent,
+        outlet: 'editReminderOutlet'
       }
-      // {
-      //   path: 'register', component: CreateUserOpenerComponent,
-      //   outlet: 'createUserOutlet'
-      // }
     ]
   },
   {
@@ -107,7 +109,9 @@ const appRoutes : Routes = [
     EditCategoryOpenerComponent,
     EditCategoryViewComponent,
     CreateUserOpenerComponent,
-    CreateUserViewComponent
+    CreateUserViewComponent,
+    EditReminderOpenerComponent,
+    EditReminderViewComponent
   ],
   imports: [
     BrowserModule,
@@ -134,6 +138,6 @@ const appRoutes : Routes = [
   ],
   providers: [NotesService,CanActivateRouteGuard,RouterService,AuthenticationService,CategoryService,ReminderService,UserService],
   bootstrap: [AppComponent],
-  entryComponents: [EditNoteViewComponent, CreateCategoryViewComponent, EditCategoryViewComponent, CreateUserViewComponent]
+  entryComponents: [EditNoteViewComponent, CreateCategoryViewComponent, EditCategoryViewComponent, CreateUserViewComponent, EditReminderViewComponent]
 })
 export class AppModule { }

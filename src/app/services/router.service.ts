@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Category } from '../category';
+import { Reminder } from '../reminder';
 @Injectable()
 export class RouterService {
   categoryId : string;
@@ -67,6 +68,16 @@ export class RouterService {
     this.router.navigate(['dashboard',{
     outlets: {
       'noteEditOutlet': ['note', noteId, 'edit']
+    }
+    }
+  ])
+  }
+
+  routeToEditReminderView(reminderId){
+    console.log("rem tbe in editremview: ",reminderId);
+    this.router.navigate(['dashboard',{
+    outlets: {
+      'editReminderOutlet': ['reminder', reminderId, 'edit']
     }
     }
   ])

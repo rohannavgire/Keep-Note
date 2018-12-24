@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from '../user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { JwtHelper } from 'angular2-jwt';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -29,12 +30,19 @@ export class AuthenticationService {
     return localStorage.getItem('bearer-token');
   } 
 
-  isUserAuthenticated(token): Promise<boolean> {        
+  isUserAuthenticated(token): Promise<boolean> {  
+    
+    const helper = new JwtHelper();
 
-    if(token)
-      return Promise.resolve(true);
-    else
-      return Promise.resolve(false);
+    const decodedToken = helper.decodeToken(token);
+    const expirationDate = helper.getTokenExpirationDate(token);
+    const isExpired = helper.isTokenExpired(token);   
+    
+    if(!isExpired) {
+      if(token)
+        return Promise.resolve(true);
+      else
+        return Promise.resolve(false);
+      }
     }
-
 }

@@ -48,14 +48,36 @@ addReminder(reminder:Reminder):Observable<Reminder>{
     })    
 }
 
-deleteReminder(reminder: Reminder): Observable<Reminder> {
-  console.log("in rem service delete: ",reminder.reminderId);
+getReminderById(reminderId): Observable<Reminder> {
+  // let foundReminder =  this.reminderList.find(reminder => reminder.reminderId == reminderId);
   
-  return this.http.delete<Reminder>(`http://localhost:8081/api/v1/reminder/${reminder.reminderId}`,{
+  // return Object.assign({},foundReminder);
+  return this.http.get<Reminder>(`http://localhost:8081/api/v1/reminder/${reminderId}`,{
+      headers : new HttpHeaders().set('authorization',`Bearer ${this.authService.getBearerToken()}`)
+    })
+}
+
+editReminder(reminder: Reminder): Observable<Reminder> {
+  console.log("Reminder TBE: ", reminder);
+  
+  return this.http.put<Reminder>(`http://localhost:8081/api/v1/reminder/${reminder.reminderId}`,reminder,{
     headers : new HttpHeaders().set('authorization',`Bearer ${this.authService.getBearerToken()}`)
-  }).do(resp => {
-    console.log("resp: ", resp);
+  }).do(editedReminder => {
+    console.log("editremDO: ", editedReminder);
     
+    let foundReminder = this.reminderList.find(reminder => reminder.reminderId == editedReminder.reminderId);
+    Object.assign(foundReminder,editedReminder);
+    this.remSubject.next(this.reminderList);
   })
 }
+
+deleteReminder(reminder: Reminder) {
+  return this.http.delete<Reminder>(`http://localhost:8081/api/v1/reminder/${reminder.reminderId}`,{
+    headers : new HttpHeaders().set('authorization',`Bearer ${this.authService.getBearerToken()}`)
+  }).do(res => {
+    this.reminderList.splice(this.reminderList.indexOf(reminder), 1);
+    this.remSubject.next(this.reminderList);
+  })
+}
+
 }

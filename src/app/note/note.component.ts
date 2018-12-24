@@ -22,6 +22,7 @@ note : Note;
 updatedNote : Note;
 category : Category;
 reminders : Reminder[];
+reminderId : string;
 reminder : Reminder;
 errMessage: string;
 visible = true;
@@ -112,6 +113,13 @@ readonly separatorKeysCodes: number[] = [ENTER, COMMA];
       this.errMessage = error.message;
     }
   });
+  }
+
+  editReminder(reminder) {
+    console.log("rem tbe in note.comp: ",reminder);
+    
+    this.reminderId = reminder.reminderId;
+    this.router.routeToEditReminderView(this.reminderId);
   }
 
   deleteNote(note : Note) {

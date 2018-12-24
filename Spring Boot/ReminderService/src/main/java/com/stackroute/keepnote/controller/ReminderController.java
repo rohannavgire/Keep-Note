@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.stackroute.keepnote.exception.ReminderNotCreatedException;
@@ -108,7 +109,7 @@ public class ReminderController {
 	@ApiOperation(value = "Deletes a Reminder.")
 	@DeleteMapping(value = "/api/v1/reminder/{id}")
 	public ResponseEntity<Reminder> deleteReminder(@PathVariable("id") String reminderId) {
-		
+
 		try {
 			System.out.println("YAY remTBD: "+reminderId);
 			if(!reminderService.deleteReminder(reminderId)) {
@@ -122,6 +123,7 @@ public class ReminderController {
 			
 		return new ResponseEntity<Reminder>(HttpStatus.OK);
 	}
+
 
 	/*
 	 * Define a handler method which will update a specific reminder by reading the

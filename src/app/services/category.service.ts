@@ -65,19 +65,13 @@ editCategory(category: Category): Observable<Category> {
   })
 }
 
-// deleteCategory(category: Category): Observable<Category> {
-//   this.catId = category.categoryId;
-//   console.log("CAT TBDS: ", this.catId);
-//   return this.http.delete<Category>(`http://localhost:8083//api/v1/category/${category.categoryId}`,{
-//     headers : new HttpHeaders().set('authorization',`Bearer ${this.authService.getBearerToken()}`)
-//   })
-// }
-
 deleteCategory(category: Category) {
-  console.log("in cat service delete: ",category.id);
-  
-  this.http.delete<Category>(`http://localhost:8083/api/v1/category/${category.id}`,{
+
+  return this.http.delete<Category>(`http://localhost:8083//api/v1/category/${category.categoryId}`,{
     headers : new HttpHeaders().set('authorization',`Bearer ${this.authService.getBearerToken()}`)
+  }).do(res => {
+    this.categories.splice(this.categories.indexOf(category), 1);
+    this.catSubject.next(this.categories);
   })
 }
 
