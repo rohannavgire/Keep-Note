@@ -99,7 +99,7 @@ readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
   remove(reminder: Reminder): void {
       
-  this.reminderService.deleteReminder(reminder);
+  this.reminderService.deleteReminder(reminder).subscribe();
 
     this.updatedNote.reminders.splice(this.updatedNote.reminders.indexOf(reminder), 1);
     this.notesService.editNote(this.updatedNote).subscribe(res => {

@@ -12,6 +12,8 @@ import { MatListModule } from '@angular/material/list';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { AuthenticationService } from '../services/authentication.service';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { Note } from '../note';
+import { NotesService } from '../services/notes.service';
 
 @Component({
   selector: 'app-header',
@@ -27,8 +29,11 @@ export class HeaderComponent implements OnInit{
       map(result => result.matches)
     );
   categories : Category[];
+  filterNotes : Note[];
+  notes : Note[];
+  errMessage : string;
     
-  constructor(private breakpointObserver: BreakpointObserver, private router: RouterService, private catService: CategoryService, private authService: AuthenticationService) {}
+  constructor(private breakpointObserver: BreakpointObserver, private notesService: NotesService, private router: RouterService, private catService: CategoryService, private authService: AuthenticationService) {}
 
   ngOnInit() {
 
@@ -49,6 +54,10 @@ export class HeaderComponent implements OnInit{
      });
 
      this.category = null; 
+     this.notesService.getNotes().subscribe(data =>{
+      this.notes = data;       
+    },error =>{
+    });
   }
 
   toggleView() {
@@ -86,7 +95,25 @@ export class HeaderComponent implements OnInit{
   deleteCategory(category : Category) {
     console.log("Inside header comp deleteCat");
              
-    this.catService.deleteCategory(category);
+    this.catService.deleteCategory(category).subscribe(res => {  
+      this.filterNotes = this.notes.filter(note => note.category.categoryId == category.id);       
+
+      this.filterNotes.forEach(note => {        
+        note.category = null;
+        this.notesService.editNote(note).subscribe(res => {
+        }  
+        )
+      })
+      
+    },
+  error=> {
+    if(error.status == 404) {
+      this.errMessage = error.message;
+    }
+    else {
+      this.errMessage = error.message;
+    }
+  });
   }
 
   openEditCategoryView(category : Category) {      
