@@ -14,9 +14,10 @@
   }
 
 .keep-c-toggle-view {
-	width: 100%;
-	margin-left: 80%;
+	/* width: 100%; */
+	margin-left: 90%;
 	margin-right: 5px;
+	padding-right: 10px;
 	cursor: pointer;
 }
 .keep-c-logout {
