@@ -17,6 +17,7 @@ export class CanActivateRouteGuard implements CanActivate {
      return booleanPromise.then((authenticated) => {
       if (!authenticated) {
         this.router.routeToLogin();
+        return false;
       }
       return authenticated;
       });

@@ -1,6 +1,7 @@
 .notes-container{
     width:80vw;
     margin:2vw 20vw;
+    margin-left: 2%;
     display: flex;
     flex-flow: row wrap;
 }
