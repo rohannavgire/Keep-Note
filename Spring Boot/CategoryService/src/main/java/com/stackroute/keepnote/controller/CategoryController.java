@@ -1,6 +1,5 @@
 package com.stackroute.keepnote.controller;
 
-import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,7 +96,7 @@ public class CategoryController {
 	@ApiOperation(value = "Deletes a Category.")
 	@DeleteMapping(value = "/api/v1/category/{id}")
 	public ResponseEntity<Category> deleteCategory(@PathVariable("id") String categoryId) {
-		
+		System.out.println("YAY cat TBDDD: "+ categoryId);
 		try {
 			System.out.println("YAY cat tbd: "+ categoryId);
 			if(!categoryService.deleteCategory(categoryId)) {

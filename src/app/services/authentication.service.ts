@@ -31,18 +31,21 @@ export class AuthenticationService {
   } 
 
   isUserAuthenticated(token): Promise<boolean> {  
-    
+    if(token) {
     const helper = new JwtHelper();
-
     const decodedToken = helper.decodeToken(token);
     const expirationDate = helper.getTokenExpirationDate(token);
-    const isExpired = helper.isTokenExpired(token);   
-    
+    const isExpired = helper.isTokenExpired(token);
+
     if(!isExpired) {
-      if(token)
-        return Promise.resolve(true);
-      else
+        return Promise.resolve(true);      
+      }
+      else {
         return Promise.resolve(false);
       }
     }
+    else {
+      return Promise.resolve(false);
+    }
+  }
 }

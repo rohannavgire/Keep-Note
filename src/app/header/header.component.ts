@@ -20,6 +20,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 })
 export class HeaderComponent implements OnInit{
   isNoteView = true;
+  isLoggedIn = false;
   category : Category;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -30,13 +31,24 @@ export class HeaderComponent implements OnInit{
   constructor(private breakpointObserver: BreakpointObserver, private router: RouterService, private catService: CategoryService, private authService: AuthenticationService) {}
 
   ngOnInit() {
-    this.catService.getCategories().subscribe(data =>{
-      
-      this.categories = data;
-      this.category = null;   
-    },error =>{
-      
-    });
+
+    const booleanPromise = this.authService.isUserAuthenticated(this.authService.getBearerToken());
+
+    booleanPromise.then((authenticated) => {
+     if (!authenticated) {
+      this.categories = null;
+     }
+     else {
+      this.catService.getCategories().subscribe(data =>{      
+        this.categories = data; 
+        this.isLoggedIn = true;         
+      },error =>{
+        
+      });
+     }
+     });
+
+     this.category = null; 
   }
 
   toggleView() {
@@ -66,12 +78,14 @@ export class HeaderComponent implements OnInit{
   }
 
   logout(){
+    this.isLoggedIn = true;
     this.authService.logoutUser();
     this.router.routeToLogin();
   }
 
-  deleteCategory(category : Category) { 
-         
+  deleteCategory(category : Category) {
+    console.log("Inside header comp deleteCat");
+             
     this.catService.deleteCategory(category);
   }
 

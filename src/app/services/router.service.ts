@@ -10,15 +10,6 @@ export class RouterService {
   routeToLogin(){
     this.router.navigate(['login'])
   }
-  // routeToCreateUserView(){
-  //   console.log("Create user view1.");
-  //   this.router.navigate(['register',{
-  //   outlets: {
-  //     'createUserOutlet': []
-  //   }
-  //   }
-  // ])
-  // }
 
   routeToCreateUserView(){
     this.router.navigate(['register',{

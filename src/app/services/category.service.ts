@@ -66,8 +66,8 @@ editCategory(category: Category): Observable<Category> {
 }
 
 deleteCategory(category: Category) {
-
-  return this.http.delete<Category>(`http://localhost:8083//api/v1/category/${category.categoryId}`,{
+  console.log("Inside cat service deleteCat: ",category);
+  return this.http.delete<Category>(`http://localhost:8083/api/v1/category/${category.id}`,{
     headers : new HttpHeaders().set('authorization',`Bearer ${this.authService.getBearerToken()}`)
   }).do(res => {
     this.categories.splice(this.categories.indexOf(category), 1);
