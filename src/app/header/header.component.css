@@ -15,7 +15,7 @@
 
 .keep-c-toggle-view {
 	/* width: 100%; */
-	margin-left: 90%;
+	margin-left: 85%;
 	margin-right: 5px;
 	padding-right: 10px;
 	cursor: pointer;
@@ -41,4 +41,10 @@
 
 .mat-raised-button {
 	margin : 2%;
+}
+
+@media(max-width: 768px) {
+	.keep-c-toggle-view {
+			margin-left: 80%;
+	}
 }

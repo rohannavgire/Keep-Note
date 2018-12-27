@@ -21,5 +21,14 @@
    }
 .note-card{
     margin:1em;
-    width: 15vw;
+    width: 25vw;
+}
+
+@media(max-width: 768px) {
+    .note-card{
+        width: 35vw;
+    }
+    .notes-container{
+        margin-left: 5%;
+    }
 }

@@ -1,7 +1,7 @@
 .notes-container{
     width:80vw;
     margin:2vw 20vw;
-    margin-left: 2%;
+    margin-left: 10%;
     display: flex;
     flex-flow: row wrap;
 }
@@ -12,4 +12,10 @@
    }
 .note-card{
     margin:1em;
+}
+
+@media(max-width: 768px) {
+    .notes-container{
+        margin-left: 20%;
+    }
 }

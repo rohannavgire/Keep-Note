@@ -8,3 +8,9 @@ div.login-form-container{
     display: flex;
     flex-direction: column;
 }
+
+@media(max-width: 768px) {
+    div.login-form-container{
+        margin-left: 30%;
+    }
+}
